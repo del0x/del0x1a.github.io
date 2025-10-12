@@ -33,9 +33,9 @@
       Notes
     </a>
   
-    <a href="/bookshelf"
+    <a href="/books"
        class="">
-      Bookshelf
+      Books
     </a>
   
 </nav>

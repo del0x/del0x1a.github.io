@@ -58,7 +58,7 @@ def build():
         contexts=[
             ("index.html", lambda: {}),  # landing page
             ("notes_index.html", lambda: {"notes": notes}),  # notes list
-            ("bookshelf.html", lambda: {}),
+            ("books.html", lambda: {}),
         ],
         rules=[(".*", lambda env, template, **kw: None)],  # disable auto
     )
@@ -85,8 +85,8 @@ def build():
     template = site.get_template("index.html")
     (OUTPUT_DIR / "index.html").write_text(template.render(baseurl="", current_page="/index"), encoding="utf-8")
 
-    template = site.get_template("bookshelf.html")
-    (OUTPUT_DIR / "bookshelf.html").write_text(template.render(baseurl="", current_page="/bookshelf"), encoding="utf-8")
+    template = site.get_template("books.html")
+    (OUTPUT_DIR / "books.html").write_text(template.render(baseurl="", current_page="/books"), encoding="utf-8")
     
     template = site.get_template("birb.html")
     (OUTPUT_DIR / "birb.html").write_text(template.render(baseurl="", current_page="/???"), encoding="utf-8")
