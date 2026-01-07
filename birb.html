@@ -48,44 +48,53 @@
     </div>
   </header>
     
-<head>
-  <meta charset="utf-8">
-  <title>Play DOOM</title>
+<style>
+  .dos-container {
+    width: 100%;
+    max-width: 750px; 
+    margin: 0 auto;
+    padding: 0; 
+  }
 
-  <!-- js-dos v6 -->
-  <link rel="stylesheet" href="js-dos.css">
-  <script src="js-dos.js"></script>
+  #dosbox {
+    width: 100% !important; /* Force override any JS-DOS defaults */
+    height: auto !important;
+    aspect-ratio: 4 / 3;    /* Standard DOS aspect ratio */
+    display: block;
+    border: 2px solid var(--highlight);
+    background-color: #000;
+    image-rendering: pixelated; /* Keeps the pixels sharp */
+    image-rendering: crisp-edges;
+  }
 
-  <style>
-    #dosbox {
-        width: 100%;        /* scale to full container width */
-        height: auto;       /* maintain aspect ratio */
-        max-width: 800px;  /* optional max width */
-        border: 2px solid #444;
-        border-radius: 8px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.7);
-}
-  </style>
-</head>
-<main>
-<body>
-  <!-- Use a canvas, not a div -->
-  <canvas id="dosbox" width="1200" height="900"></canvas>
+  /* Make sure the JS-DOS internal wrapper doesn't shrink it */
+  .dosbox-container {
+    width: 100% !important;
+    height: auto !important;
+  }
+</style>
 
-  <script>
-    Dos(document.getElementById("dosbox"), {
-      wdosboxUrl: "wdosbox.js"
-    }).ready((fs, main) => {
-      fs.extract("DOOM.zip").then(() => {
-        main(["-c", "cd GAME", "-c", "FDOOM.exe"]);
-      });
-    });
-  </script>
-</body>
+<main class="dos-container">
+    <canvas id="dosbox"></canvas>
 </main>
+<link rel="stylesheet" href="js-dos.css">
+<script src="js-dos.js"></script>
+
+<script>
+  Dos(document.getElementById("dosbox"), {
+    wdosboxUrl: "wdosbox.js"
+  }).ready((fs, main) => {
+    fs.extract("DOOM.zip").then(() => {
+      main(["-c", "cd GAME", "-c", "FDOOM.exe"]);
+    });
+  });
+</script>
 
     <footer class="status-footer">
   <div class="footer-container">
+    <div class="theme-switcher">
+      MODE: <button id="theme-toggle" aria-live="polite">[ AUTO ]</button>
+    </div>
     <div class="footer-status">
       ✨ Currently: <span id="status-message"></span>
     </div>
@@ -98,7 +107,9 @@
   </div>
 </footer>
   <script src="js/curr_act.js"></script>
+  <script src="js/theme_toggle.js"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="3191ee62-7777-4372-bb11-a3045a55c24a"></script>
   <script src="js/pause_gif.js"></script>
+
 </body>
 </html>
