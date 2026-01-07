@@ -1,8 +1,4 @@
-I've consolidated the CSS into a single, clean file. I made a few key adjustments to ensure the Auto logic functions correctly and that the background "dot grid" behaves nicely across all three modes.
-Final Adjusted styles.css
-CSS
-
-/* 1. THEME VARIABLES */
+/* Default Color Variables */
 :root {
   --bg-color: #F5F1E6;      /* Parchment */
   --text-main: #333333;     /* Charcoal */
@@ -11,24 +7,23 @@ CSS
   --footer-bg: #2F4F4F;
   --footer-text: #F5F1E6;
   --dot-opacity: 0.02;
-  --dot-color: 0, 0, 0;     /* Black dots for light mode */
 }
 
-/* System Preference (Auto Logic) */
+/* Dark Mode Overrides */
 @media (prefers-color-scheme: dark) {
-  :root:not(.light-mode) {
-    --bg-color: #1A1A1A;    
-    --text-main: #E0E0E0;   
-    --text-accent: #8FBC8F; 
-    --highlight: #D4AF37;   
+  :root:not(.light-mode){
+    --bg-color: #1A1A1A;    /* Dark Charcoal */
+    --text-main: #E0E0E0;   /* Light Gray */
+    --text-accent: #8FBC8F; /* Dark Sea Green (better contrast) */
+    --highlight: #D4AF37;   /* Brighter Gold/Bronze */
     --footer-bg: #000000;
     --footer-text: #E0E0E0;
-    --dot-opacity: 0.1;
-    --dot-color: 255, 255, 255; /* White dots for dark mode */
+    --dot-opacity: 0.1;     /* More visible dots on dark */
   }
 }
 
-/* Manual Mode Overrides */
+
+/* Forced Dark Mode (Manual override) */
 .dark-mode {
   --bg-color: #1A1A1A;
   --text-main: #E0E0E0;
@@ -37,9 +32,9 @@ CSS
   --footer-bg: #000000;
   --footer-text: #E0E0E0;
   --dot-opacity: 0.1;
-  --dot-color: 255, 255, 255;
 }
 
+/* Forced Light Mode (Manual override) */
 .light-mode {
   --bg-color: #F5F1E6;
   --text-main: #333333;
@@ -48,10 +43,21 @@ CSS
   --footer-bg: #2F4F4F;
   --footer-text: #F5F1E6;
   --dot-opacity: 0.02;
-  --dot-color: 0, 0, 0;
 }
 
-/* 2. BASE RESET & BODY */
+#theme-toggle {
+  background: none;
+  border: none;
+  color: var(--highlight);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+/* Reset margins and padding */
 body, h1, h2, p {
   margin: 0;
   padding: 0;
@@ -66,20 +72,18 @@ body {
   line-height: 1.7;
   color: var(--text-main);
   background-color: var(--bg-color);
-  display: flex;
   flex-direction: column;
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  
-  /* Unified background grid using the --dot-color variable */
+  /* Dynamic dot grid based on theme */
   background-image: 
-    radial-gradient(rgba(var(--dot-color), var(--dot-opacity)) 1px, transparent 1px),
-    radial-gradient(rgba(var(--dot-color), calc(var(--dot-opacity) * 0.8)) 1px, transparent 1px);
+    radial-gradient(rgba(255,255,255, var(--dot-opacity)) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0, var(--dot-opacity)) 1px, transparent 1px);
   background-size: 5px 5px, 8px 8px;
   background-position: 0 0, 3px 3px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 3. HEADER & NAV */
+/* Header */
 header {
   padding: 1rem 0;
 }
@@ -126,11 +130,12 @@ header nav a:hover, header nav a.active {
   text-decoration: underline;
 }
 
-/* 4. MAIN CONTENT */
+/* Main content */
 main {
   flex: 1;
   max-width: 750px;
   margin: 0 auto;
+  margin-bottom: 150px;
 }
 
 article {
@@ -156,6 +161,7 @@ article p {
   color: var(--text-main);
 }
 
+/* List Items */
 .notes-list {
   list-style: none;
   margin: 1rem auto 0 auto;
@@ -175,7 +181,7 @@ article p {
   text-decoration: underline;
 }
 
-/* 5. FOOTER & TOGGLE */
+/* Footer Styles */
 .status-footer {
   position: fixed;
   left: 0;
@@ -197,28 +203,6 @@ article p {
   flex-wrap: wrap;
 }
 
-.theme-switcher {
-  font-family: "Geist Mono", monospace;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-#theme-toggle {
-  background: none;
-  border: none;
-  color: var(--highlight);
-  font-family: "Geist Mono", monospace;
-  font-size: 0.85rem;
-  font-weight: 800;
-  cursor: pointer;
-  padding: 0 4px;
-  text-transform: uppercase;
-}
-
-#theme-toggle:hover {
-  text-decoration: underline;
-}
-
 .footer-copy, .footer-timezone, .footer-status {
   font-size: 0.9rem;
   color: var(--footer-text);
@@ -229,7 +213,11 @@ article p {
   text-decoration: none;
 }
 
-/* 6. SOCIAL LINKS */
+.footer-copy a:hover {
+  color: var(--highlight);
+}
+
+/* Social Links */
 .social-link {
   font-family: "Geist Mono", monospace;
   font-weight: 600;
@@ -239,23 +227,45 @@ article p {
   transition: color 0.2s ease;
 }
 
+/* Keeping your specific brand colors as they usually stay consistent in dark mode */
 .social-link.github { text-decoration-color: #E1306C; }
 .social-link.email  { text-decoration-color: #0077B5; }
 .social-link.itch   { text-decoration-color: violet; }
 .social-link.umami  { text-decoration-color: yellow; }
 
-/* 7. RESPONSIVE */
+/* Mobile Tweaks */
 @media (max-width: 600px) {
   .footer-container {
     flex-direction: column;
     text-align: center;
-    gap: 8px;
   }
   .social-links {
     flex-direction: column;
     align-items: center;
   }
-  .status-footer {
-      position: static; /* Unstick footer on small mobile screens if desired */
-  }
+}
+
+/* Custom bullets only for Note content and Resources */
+.note-body ul, 
+.resources-list {
+  list-style: none; 
+  padding-left: 1.5rem; 
+  margin: 1rem 0;
+}
+
+.note-body ul li, 
+.resources-list li {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+/* The actual >> replacement */
+.note-body ul li::before, 
+.resources-list li::before {
+  content: ">>";
+  position: absolute;
+  left: -1.5rem; 
+  color: var(--highlight);
+  font-family: "Geist Mono", monospace;
+  font-weight: bold;
 }
