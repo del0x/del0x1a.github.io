@@ -1,7 +1,24 @@
-# Blog.
+# 0x1A // LOGBOOK
 
-Just a blog I created for fun and playing around with. Nothing too serious. Eventual goal is to move this to self-hosted server.
+A minimal static site generator built to turn my thoughts into a searchable knowledge base.
 
-Currently built using staticjinja templates. 
+## [ SPECS ]
+- **Core:** Python 3.10
+- **Templating:** staticjinja (Jinja2)
+- **Styling:** Custom CSS
+- **Deployment:** GitHub Pages
 
-To add a new post, create a new .md file under build_site/notes. Once you're done, run the build.py script to recompile the html and you're done.
+## [ WORKFLOW ]
+1.  Create note: `touch notes/new-entry.md`
+2.  Add metadata block (title, date, tags, resources).
+3.  Execute build: `python3 build.py`
+4.  Push to remote: `git push origin main`
+
+## [ PROJECT GOALS ]
+- [x] Custom terminal-style bullets (>>)
+- [x] Automated resource list parsing
+- [x] Add a surprise to the ??? page
+- [x] Make the kitty "interactable"
+- [ ] Move to self-hosted VPS / Docker
+- [ ] Add RSS feed generation
+- [ ] Build searchable tags
