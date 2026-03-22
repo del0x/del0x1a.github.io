@@ -15,7 +15,7 @@
     --bg-color: #1A1A1A;    /* Dark Charcoal */
     --text-main: #E0E0E0;   /* Light Gray */
     --text-accent: #8FBC8F; /* Dark Sea Green (better contrast) */
-    --highlight: #D4AF37;   /* Brighter Gold/Bronze */
+    --highlight: #B08D57;   /* Brighter Gold/Bronze */
     --footer-bg: #000000;
     --footer-text: #E0E0E0;
     --dot-opacity: 0.1;     /* More visible dots on dark */
@@ -28,7 +28,7 @@
   --bg-color: #1A1A1A;
   --text-main: #E0E0E0;
   --text-accent: #8FBC8F;
-  --highlight: #D4AF37;
+  --highlight: #B08D57;
   --footer-bg: #000000;
   --footer-text: #E0E0E0;
   --dot-opacity: 0.1;
