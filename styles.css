@@ -232,6 +232,7 @@ article p {
 .social-link.email  { text-decoration-color: #0077B5; }
 .social-link.itch   { text-decoration-color: violet; }
 .social-link.umami  { text-decoration-color: yellow; }
+.social-link.portfolio  { text-decoration-color: magenta; }
 
 /* Mobile Tweaks */
 @media (max-width: 600px) {
