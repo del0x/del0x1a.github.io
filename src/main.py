@@ -6,9 +6,10 @@ import re
 import shutil
 from staticjinja import Site
 
-NOTES_DIR = Path("../notes")
-OUTPUT_DIR = Path("../docs")   # output one level up into github pages repo
-STATIC_DIR = Path("../static")
+BASE_DIR = Path(__file__).resolve().parent
+NOTES_DIR = BASE_DIR.parent / "notes"
+OUTPUT_DIR = BASE_DIR.parent / "docs"
+STATIC_DIR = BASE_DIR.parent / "static"
 
 def parse_markdown(md_file):
     """Convert markdown to HTML and extract metadata cleanly."""
