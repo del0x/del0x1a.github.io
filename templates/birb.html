@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .dos-container {
+    width: 100%;
+    max-width: 750px; 
+    margin: 0 auto;
+    padding: 0; 
+  }
+
+  #dosbox {
+    width: 100% !important; /* Force override any JS-DOS defaults */
+    height: auto !important;
+    aspect-ratio: 4 / 3;    /* Standard DOS aspect ratio */
+    display: block;
+    border: 2px solid var(--highlight);
+    background-color: #000;
+    image-rendering: pixelated; /* Keeps the pixels sharp */
+    image-rendering: crisp-edges;
+  }
+
+  /* Make sure the JS-DOS internal wrapper doesn't shrink it */
+  .dosbox-container {
+    width: 100% !important;
+    height: auto !important;
+  }
+</style>
+
+<main class="dos-container">
+    <canvas id="dosbox"></canvas>
+</main>
+<link rel="stylesheet" href="js-dos.css">
+<script src="js-dos.js"></script>
+
+<script>
+  Dos(document.getElementById("dosbox"), {
+    wdosboxUrl: "wdosbox.js"
+  }).ready((fs, main) => {
+    fs.extract("DOOM.zip").then(() => {
+      main(["-c", "cd GAME", "-c", "FDOOM.exe"]);
+    });
+  });
+</script>
+{% endblock %}

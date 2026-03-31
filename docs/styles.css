@@ -15,7 +15,7 @@
     --bg-color: #1A1A1A;    /* Dark Charcoal */
     --text-main: #E0E0E0;   /* Light Gray */
     --text-accent: #8FBC8F; /* Dark Sea Green (better contrast) */
-    --highlight: #B08D57;   /* Brighter Gold/Bronze */
+    --highlight: #D4AF37;   /* Brighter Gold/Bronze */
     --footer-bg: #000000;
     --footer-text: #E0E0E0;
     --dot-opacity: 0.1;     /* More visible dots on dark */
@@ -28,7 +28,7 @@
   --bg-color: #1A1A1A;
   --text-main: #E0E0E0;
   --text-accent: #8FBC8F;
-  --highlight: #B08D57;
+  --highlight: #D4AF37;
   --footer-bg: #000000;
   --footer-text: #E0E0E0;
   --dot-opacity: 0.1;
@@ -227,12 +227,10 @@ article p {
   transition: color 0.2s ease;
 }
 
-/* Keeping your specific brand colors as they usually stay consistent in dark mode */
 .social-link.github { text-decoration-color: #E1306C; }
 .social-link.email  { text-decoration-color: #0077B5; }
 .social-link.itch   { text-decoration-color: violet; }
 .social-link.umami  { text-decoration-color: yellow; }
-.social-link.portfolio  { text-decoration-color: magenta; }
 
 /* Mobile Tweaks */
 @media (max-width: 600px) {

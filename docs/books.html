@@ -1,10 +1,12 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Del's kiosk</title>
+  <title>🏠 Del's Workshop</title>
   <link rel="icon" type="image/x-icon" href="/images/favicon.gif">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -35,7 +37,7 @@
     </a>
   
     <a href="/books"
-       class="">
+       class="active">
       Books
     </a>
   
@@ -48,48 +50,22 @@
     </div>
   </header>
     
-<style>
-  .dos-container {
-    width: 100%;
-    max-width: 750px; 
-    margin: 0 auto;
-    padding: 0; 
-  }
+<main>
+    <article>
+      <h2>Books</span></h2>
+      <p> No particular order for now and just books I can remember from the top of my head... Reviews, things I learned incoming as well.</p>
+      <p>T-sql querying - Done</p>
+      <p>Designing Data Intensive applications - Done</p>
+      <p>Mining the social web - Done</p>
+      <p> Code Complete Second Edition - Done</p>
+      <p> Fundamentals of Data engineering - Done</p>
+      <p> Python Object-oriented programming - Done</p>
 
-  #dosbox {
-    width: 100% !important; /* Force override any JS-DOS defaults */
-    height: auto !important;
-    aspect-ratio: 4 / 3;    /* Standard DOS aspect ratio */
-    display: block;
-    border: 2px solid var(--highlight);
-    background-color: #000;
-    image-rendering: pixelated; /* Keeps the pixels sharp */
-    image-rendering: crisp-edges;
-  }
+    </article>
+  </main>
+  <script src="js/curr_act.js"></script>
 
-  /* Make sure the JS-DOS internal wrapper doesn't shrink it */
-  .dosbox-container {
-    width: 100% !important;
-    height: auto !important;
-  }
-</style>
-
-<main class="dos-container">
-    <canvas id="dosbox"></canvas>
-</main>
-<link rel="stylesheet" href="js-dos.css">
-<script src="js-dos.js"></script>
-
-<script>
-  Dos(document.getElementById("dosbox"), {
-    wdosboxUrl: "wdosbox.js"
-  }).ready((fs, main) => {
-    fs.extract("DOOM.zip").then(() => {
-      main(["-c", "cd GAME", "-c", "FDOOM.exe"]);
-    });
-  });
-</script>
-
+  
     <footer class="status-footer">
   <div class="footer-container">
     <div class="theme-switcher">

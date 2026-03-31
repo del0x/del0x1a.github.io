@@ -1,0 +1,270 @@
+/* Default Color Variables */
+:root {
+  --bg-color: #F5F1E6;      /* Parchment */
+  --text-main: #333333;     /* Charcoal */
+  --text-accent: #2F4F4F;   /* Forest Green */
+  --highlight: #B08D57;     /* Bronze */
+  --footer-bg: #2F4F4F;
+  --footer-text: #F5F1E6;
+  --dot-opacity: 0.02;
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-mode){
+    --bg-color: #1A1A1A;    /* Dark Charcoal */
+    --text-main: #E0E0E0;   /* Light Gray */
+    --text-accent: #8FBC8F; /* Dark Sea Green (better contrast) */
+    --highlight: #D4AF37;   /* Brighter Gold/Bronze */
+    --footer-bg: #000000;
+    --footer-text: #E0E0E0;
+    --dot-opacity: 0.1;     /* More visible dots on dark */
+  }
+}
+
+
+/* Forced Dark Mode (Manual override) */
+.dark-mode {
+  --bg-color: #1A1A1A;
+  --text-main: #E0E0E0;
+  --text-accent: #8FBC8F;
+  --highlight: #D4AF37;
+  --footer-bg: #000000;
+  --footer-text: #E0E0E0;
+  --dot-opacity: 0.1;
+}
+
+/* Forced Light Mode (Manual override) */
+.light-mode {
+  --bg-color: #F5F1E6;
+  --text-main: #333333;
+  --text-accent: #2F4F4F;
+  --highlight: #B08D57;
+  --footer-bg: #2F4F4F;
+  --footer-text: #F5F1E6;
+  --dot-opacity: 0.02;
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  color: var(--highlight);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+/* Reset margins and padding */
+body, h1, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Geist Mono", monospace;
+}
+
+body {
+  font-family: "Geist Mono", monospace;
+  line-height: 1.7;
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  flex-direction: column;
+  min-height: 100vh;
+  /* Dynamic dot grid based on theme */
+  background-image: 
+    radial-gradient(rgba(255,255,255, var(--dot-opacity)) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0, var(--dot-opacity)) 1px, transparent 1px);
+  background-size: 5px 5px, 8px 8px;
+  background-position: 0 0, 3px 3px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+header {
+  padding: 1rem 0;
+}
+
+.header-container {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 1rem 2rem 1rem 1rem; 
+}
+
+.site-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-accent);
+  margin-bottom: 0.5rem;
+}
+
+header nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.25rem;
+  padding-left: 2rem;
+}
+
+.nav-gif img {
+  width: 36px;
+  height: 36px;
+  image-rendering: pixelated;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+header nav a {
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+header nav a:hover, header nav a.active {
+  color: var(--highlight);
+  text-decoration: underline;
+}
+
+/* Main content */
+main {
+  flex: 1;
+  max-width: 750px;
+  margin: 0 auto;
+  margin-bottom: 150px;
+}
+
+article {
+  padding: 0 2rem;
+}
+
+article h2 {
+  font-family: "Geist Mono", monospace;
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--highlight);
+  padding-bottom: 0.5rem;
+}
+
+article p {
+  margin: 1.25rem 0;
+  font-family: Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-main);
+}
+
+/* List Items */
+.notes-list {
+  list-style: none;
+  margin: 1rem auto 0 auto;
+  max-width: 750px;
+  padding: 0;
+}
+
+.notes-list li a {
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.125rem;
+}
+
+.notes-list li a:hover {
+  color: var(--highlight);
+  text-decoration: underline;
+}
+
+/* Footer Styles */
+.status-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 2px solid var(--highlight);
+  padding: 8px 24px;
+  box-sizing: border-box;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-copy, .footer-timezone, .footer-status {
+  font-size: 0.9rem;
+  color: var(--footer-text);
+}
+
+.footer-copy a {
+  color: var(--footer-text);
+  text-decoration: none;
+}
+
+.footer-copy a:hover {
+  color: var(--highlight);
+}
+
+/* Social Links */
+.social-link {
+  font-family: "Geist Mono", monospace;
+  font-weight: 600;
+  color: var(--text-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  transition: color 0.2s ease;
+}
+
+.social-link.github { text-decoration-color: #E1306C; }
+.social-link.email  { text-decoration-color: #0077B5; }
+.social-link.itch   { text-decoration-color: violet; }
+.social-link.umami  { text-decoration-color: yellow; }
+
+/* Mobile Tweaks */
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .social-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Custom bullets only for Note content and Resources */
+.note-body ul, 
+.resources-list {
+  list-style: none; 
+  padding-left: 1.5rem; 
+  margin: 1rem 0;
+}
+
+.note-body ul li, 
+.resources-list li {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+/* The actual >> replacement */
+.note-body ul li::before, 
+.resources-list li::before {
+  content: ">>";
+  position: absolute;
+  left: -1.5rem; 
+  color: var(--highlight);
+  font-family: "Geist Mono", monospace;
+  font-weight: bold;
+}

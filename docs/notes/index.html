@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Del's kiosk</title>
+  <title>🏠 Del's Workshop</title>
   <link rel="icon" type="image/x-icon" href="/images/favicon.gif">
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -48,17 +48,25 @@
     </div>
   </header>
     
-<main>
+  <main>
   <article>
-    <h2>On_Action</h2>
-    <p><em>2025-12-05</em></p>
-    <div><h3>Testing</h3>
-<p>Testing adding some information.</p></div>
-  </article>
-  </main>
+  <h2>All Notes</h2>
+  <ul class="notes-list">
+  
+    <li>
+      <a href="The_Brick_of_Wisdom">The Brick of Wisdom</a>
+      <small>(2026-01-07)</small>
+    </li>
+  
+  </ul>
+   </article>
+   </main>
 
     <footer class="status-footer">
   <div class="footer-container">
+    <div class="theme-switcher">
+      MODE: <button id="theme-toggle" aria-live="polite">[ AUTO ]</button>
+    </div>
     <div class="footer-status">
       ✨ Currently: <span id="status-message"></span>
     </div>
@@ -71,7 +79,9 @@
   </div>
 </footer>
   <script src="../js/curr_act.js"></script>
+  <script src="../js/theme_toggle.js"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="3191ee62-7777-4372-bb11-a3045a55c24a"></script>
   <script src="../js/pause_gif.js"></script>
+
 </body>
 </html>

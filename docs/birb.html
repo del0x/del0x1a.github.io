@@ -1,12 +1,10 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Del's kiosk</title>
+  <title>🏠 Del's Workshop</title>
   <link rel="icon" type="image/x-icon" href="/images/favicon.gif">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -27,7 +25,7 @@
 
   
     <a href="/index"
-       class="active">
+       class="">
       Me
     </a>
   
@@ -50,27 +48,48 @@
     </div>
   </header>
     
-<main>
-    <article>
-      <h2>🏠 Del's Workshop</h2>
-      <p>Hi, I'm Del.</p>
-      <p>I like learning and experimenting with new ideas. 
-        This is an informal blog where I write about whatever interests me at the moment. 
-        It could be technology, implementation details, philosophy, self-hosting, gadgets, and other things I find interesting.</p>
-      <p>My interests tend to come in cycles, so this space helps me bring some structure to them and keep track of what I've learned along the way.</p>
-      
-      <!-- Social Links Section -->
-  <a href="https://github.com" class="social-link github" target="_blank">GitHub</a>
-  <a href="https://delx.cc" class="social-link portfolio">Portfolio</a>
-  <a href="mailto:you@example.com" class="social-link email">Email</a>
-  <a href="http://del0x.itch.io/" class="social-link itch">Itch</a>
-  <a href="https://cloud.umami.is/share/bDAyCOdEZFK7FZsH" class="social-link umami"> Analytics</a>
+<style>
+  .dos-container {
+    width: 100%;
+    max-width: 750px; 
+    margin: 0 auto;
+    padding: 0; 
+  }
 
-</div>
+  #dosbox {
+    width: 100% !important; /* Force override any JS-DOS defaults */
+    height: auto !important;
+    aspect-ratio: 4 / 3;    /* Standard DOS aspect ratio */
+    display: block;
+    border: 2px solid var(--highlight);
+    background-color: #000;
+    image-rendering: pixelated; /* Keeps the pixels sharp */
+    image-rendering: crisp-edges;
+  }
 
-    </article>
-  </main>
-  
+  /* Make sure the JS-DOS internal wrapper doesn't shrink it */
+  .dosbox-container {
+    width: 100% !important;
+    height: auto !important;
+  }
+</style>
+
+<main class="dos-container">
+    <canvas id="dosbox"></canvas>
+</main>
+<link rel="stylesheet" href="js-dos.css">
+<script src="js-dos.js"></script>
+
+<script>
+  Dos(document.getElementById("dosbox"), {
+    wdosboxUrl: "wdosbox.js"
+  }).ready((fs, main) => {
+    fs.extract("DOOM.zip").then(() => {
+      main(["-c", "cd GAME", "-c", "FDOOM.exe"]);
+    });
+  });
+</script>
+
     <footer class="status-footer">
   <div class="footer-container">
     <div class="theme-switcher">

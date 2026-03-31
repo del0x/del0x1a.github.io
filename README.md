@@ -1,9 +1,9 @@
-# 0x1A // LOGBOOK
+# 0x1A // LOG
 
-A minimal static site generator built to turn my thoughts into a searchable knowledge base.
+A minimal static site generator.
 
 ## [ SPECS ]
-- **Core:** Python 3.10
+- **Core:** Python 3.14
 - **Templating:** staticjinja (Jinja2)
 - **Styling:** Custom CSS
 - **Deployment:** GitHub Pages
@@ -11,7 +11,7 @@ A minimal static site generator built to turn my thoughts into a searchable know
 ## [ WORKFLOW ]
 1.  Create note: `touch notes/new-entry.md`
 2.  Add metadata block (title, date, tags, resources).
-3.  Execute build: `python3 build.py`
+3.  Execute build: `./main.sh`
 4.  Push to remote: `git push origin main`
 
 ## [ PROJECT GOALS ]
