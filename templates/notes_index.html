@@ -6,7 +6,7 @@
   <ul class="notes-list">
   {% for note in notes %}
     <li>
-      <a href="{{ note.filename }}">{{ note.title.replace("_", " ") }}</a>
+      <a href="notes/{{ note.filename }}">{{ note.title.replace("_", " ") }}</a>
       <small>({{ note.date }})</small>
     </li>
   {% endfor %}

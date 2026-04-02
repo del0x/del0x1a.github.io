@@ -94,12 +94,13 @@ def copy_static():
                 shutil.copy2(item, dest)
 
 def build():
-    print("Collecting notes")
+    print("Collecting notes...")
     notes = collect_notes()
 
     # Ensure output directories exist
     (OUTPUT_DIR / "notes").mkdir(parents=True, exist_ok=True)
 
+    print("Generating site...")
     site = Site.make_site(
         searchpath="templates",
         outpath=str(OUTPUT_DIR),
@@ -141,6 +142,7 @@ def build():
     (OUTPUT_DIR / "birb.html").write_text(template.render(baseurl="", current_page="/???"), encoding="utf-8")
 
     # Copy static assets
+    print("Copying static files...")
     copy_static()
 
 if __name__ == "__main__":
