@@ -1,6 +1,6 @@
-# 0x1A // LOG
+# 0x1A
 
-A minimal static site generator.
+Github pages blog with a minimal static site generator.
 
 ## [ SPECS ]
 - **Core:** Python 3.14
@@ -11,8 +11,8 @@ A minimal static site generator.
 ## [ WORKFLOW ]
 1.  Create note: `touch notes/new-entry.md`
 2.  Add metadata block (title, date, tags, resources).
-3.  Execute build: `./main.sh`
-4.  Push to remote: `git push origin main`
+3.  Execute build: `make build`
+4.  Develop locally with aut updates `make dev`
 
 ## [ PROJECT GOALS ]
 - [x] Custom terminal-style bullets (>>)
