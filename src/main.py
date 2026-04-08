@@ -31,7 +31,14 @@ def parse_markdown(md_file):
 
     # 2. Extract Date: Metadata > File System
     date_list = meta.get('date', [])
-    date = date_list[0] if date_list else datetime.datetime.fromtimestamp(md_file.stat().st_mtime).strftime("%Y-%m-%d")
+    if date_list:
+        try:
+            date = datetime.datetime.fromisoformat(date_list[0])
+        except ValueError:
+            # fallback if format is invalid
+            date = datetime.datetime.fromtimestamp(md_file.stat().st_mtime)
+    else:
+        date = datetime.datetime.fromtimestamp(md_file.stat().st_mtime)
 
     # 3. Clean Resources (Robust Fix for single/multi line)
     raw_resources = meta.get('resources', [])
@@ -72,6 +79,7 @@ def parse_markdown(md_file):
     return {
         "title": title,
         "date": date,
+        "date_str": date.strftime("%Y-%m-%d"),
         "resources": cleaned_resources,
         "tags": tags,
         "content": html,
