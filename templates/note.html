@@ -3,25 +3,31 @@
 <main>
   <article>
     <h2>{{ note.title }}</h2>
-    <p><em>{{ note.date_str }}</em></p>
-    <p style="font-family: 'Geist Mono', monospace; font-size: 1rem; color: var(--highlight); margin-top: 1.5rem; margin-bottom: 0.5rem;">TAGS</p>
-    <p>{% if note.tags %}
-    <span style="color: var(--text-accent);">
-      {% for tag in note.tags %}
-      {{ tag }}
-      {% endfor %}
-    </span>
-  {% endif %}
-</p>
-    <p style="font-family: 'Geist Mono', monospace; font-size: 1rem; color: var(--highlight); margin-top: 1.5rem; margin-bottom: 0.5rem;">RESOURCES</p>
-    <ul class="resources-list">
-      {% for res in note.resources %}
-        <li>{{ res }}</li>
-      {% endfor %}
-    </ul>
-    <div class="note-body">
+
+      <div class="panel">
+        <p><em>{{ note.date_str }}</em></p>
+        <p style="font-family: 'Geist Mono', monospace; font-size: 1rem; color: var(--highlight); margin-top: 1.5rem; margin-bottom: 0.5rem;">TAGS</p>
+        <p>
+          {% for tag in note.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </p>
+      </div>
+
+    <div class="note-body panel">
       {{ note.content | safe }}
     </div>
+
+      <div class="panel">
+        <p style="font-family: 'Geist Mono', monospace; font-size: 1rem; color: var(--highlight); margin-top: 1.5rem; margin-bottom: 0.5rem;">RESOURCES</p>
+        <ul class="resources-list">
+          {% for res in note.resources %}
+            <li>{{ res }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+
   </article>
 </main>
 {% endblock %}

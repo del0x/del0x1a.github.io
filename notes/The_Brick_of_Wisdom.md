@@ -3,7 +3,7 @@ title: The Brick of Wisdom
 date: 2026-01-07
 tags: [software_engineering, code_complete]
 resources:
-  - Code Complete Second Edition
+  - "Code Complete Second Edition"
 
 
 ---

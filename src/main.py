@@ -1,5 +1,5 @@
 from pathlib import Path
-import os
+import frontmatter
 import markdown
 import datetime
 import re
@@ -13,35 +13,35 @@ STATIC_DIR = BASE_DIR.parent / "static"
 
 def parse_markdown(md_file):
     """Convert markdown to HTML and extract metadata cleanly."""
-    text = md_file.read_text(encoding="utf-8")
+    post = frontmatter.load(md_file)
     
-    # Initialize Markdown with Meta extension
-    md = markdown.Markdown(extensions=['meta'])
-    html = md.convert(text)
-    
-    # Extract metadata dictionary
-    meta = md.Meta if hasattr(md, 'Meta') else {}
+    # Convert content to HTML
+    html = markdown.markdown(post.content)
 
-    # 1. Extract Title: Metadata > First H1 > Filename
-    title_list = meta.get('title', [])
-    title = title_list[0] if title_list else None
+    # Title
+    title = post.get("title")
     if not title:
         match = re.search(r"<h1>(.*?)</h1>", html)
         title = match.group(1) if match else md_file.stem.replace("-", " ").title()
 
     # 2. Extract Date: Metadata > File System
-    date_list = meta.get('date', [])
-    if date_list:
+    date_value = post.get("date")
+    if isinstance(date_value, str):
         try:
-            date = datetime.datetime.fromisoformat(date_list[0])
+            date = datetime.datetime.fromisoformat(date_value)
         except ValueError:
-            # fallback if format is invalid
             date = datetime.datetime.fromtimestamp(md_file.stat().st_mtime)
+    elif isinstance(date_value, (datetime.datetime, datetime.date)):
+        # Convert date to datetime if it's a date object
+        if isinstance(date_value, datetime.date) and not isinstance(date_value, datetime.datetime):
+            date = datetime.datetime.combine(date_value, datetime.time.min)
+        else:
+            date = date_value
     else:
         date = datetime.datetime.fromtimestamp(md_file.stat().st_mtime)
 
-    # 3. Clean Resources (Robust Fix for single/multi line)
-    raw_resources = meta.get('resources', [])
+     # 3. Clean Resources (Robust Fix for single/multi line)
+    raw_resources = post.get('resources', [])
     
     # Force into a list if it's somehow a single string
     if isinstance(raw_resources, str):
@@ -68,7 +68,7 @@ def parse_markdown(md_file):
     filename = md_file.with_suffix(".html").name
     url = f"notes/{filename}"
 
-    tags_list = meta.get('tags', [])
+    tags_list = post.get('tags', [])
     
     if isinstance(tags_list, str):
         tags_list = [tags_list]

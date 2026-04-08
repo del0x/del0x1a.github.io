@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,32 +49,111 @@
   </header>
     
 <main>
-    <article>
-      <h2>🏠 Del's Workshop</h2>
-      <p>Hi, I'm Del.</p>
-      <p> I like learning and experimenting with new ideas. This is an informal blog where 
+
+  <!-- Main intro panel -->
+  <article class="panel">
+    <h2>Del's Workshop</h2>
+    <p>Hi, I'm Del.</p>
+    <p>
+      I like learning and experimenting with new ideas. This is an informal blog where 
       I write about whatever interests me at the moment. 
       It could be technology, implementation details, philosophy, self-hosting, gadgets, and other things I find interesting.
     </p> 
 
-      <!-- Social Links Section -->
-<div class="social-links">
-  <a href="https://github.com" class="social-link github" target="_blank">GitHub</a>
-  <a href="https://delx.cc" class="social-link portfolio">Portfolio</a>
-  <a href="mailto:you@example.com" class="social-link email">Email</a>
-  <a href="http://del0x.itch.io/" class="social-link itch">Itch</a>
-  <a href="https://cloud.umami.is/share/bDAyCOdEZFK7FZsH" class="social-link umami"> Analytics</a>
+    <!-- Social Links -->
+    <div class="social-links">
+      <a href="https://github.com" class="social-link github" target="_blank">GitHub</a>
+      <a href="https://delx.cc" class="social-link portfolio">Portfolio</a>
+      <a href="mailto:you@example.com" class="social-link email">Email</a>
+      <a href="http://del0x.itch.io/" class="social-link itch">Itch</a>
+      <a href="https://cloud.umami.is/share/bDAyCOdEZFK7FZsH" class="social-link umami">Analytics</a>
+    </div>
+  </article>
 
-</div>
+  <!-- 🧃 Button Wall -->
+  <section class="panel button-wall">
+    <div class="buttons-grid">
+      <!-- Your button -->
+      <a href="/">
+        <img src="/images/buttons/nixos.gif" alt="Del's Workshop">
+      </a>
 
-    </article>
-  </main>
-  
+      <!-- Example buttons -->
+      <a href="https://neocities.org" target="_blank">
+        <img src="/images/buttons/built_with_microsoft_notepad.gif" alt="Neocities">
+      </a>
+
+      <a href="https://nixos.org" target="_blank">
+        <img src="/images/buttons/brave.gif" alt="NixOS">
+      </a>
+
+      <a href="https://gnu.org" target="_blank">
+        <img src="/images/buttons/debian.gif" alt="debian">
+      </a>
+
+       <a href="https://firefox.com" target="_blank">
+        <img src="/images/buttons/firefoxget.gif" alt="firefox">
+      </a>
+
+      <a href="https://github.com" target="_blank">
+        <img src="/images/buttons/gh-pages-bo.gif" alt="gh-pages">
+      </a>
+
+      <a href="" target="_blank">
+        <img src="/images/buttons/htmldream.gif" alt="htmldream">
+      </a>
+
+      <a href="" target="_blank">
+        <img src="/images/buttons/delete-twitter.gif" alt="delete-twitter">
+      </a>
+
+      <a href="https://duckduckgo.com" target="_blank">
+        <img src="/images/buttons/ddg.gif" alt="duckduckgo">
+      </a>
+
+      <a href="" target="_blank">
+        <img src="/images/buttons/button3sea.gif" alt="button3sea">
+      </a>
+
+      <a href="" target="_blank">
+        <img src="/images/buttons/abrowser.gif" alt="abrowser">
+      </a>
+
+      <a href="" target="_blank">
+        <img src="/images/buttons/4x3_fade.gif" alt="4x3_fade">
+      </a>
+
+      <a href="" target="_blank">
+        <img src="/images/buttons/128.gif" alt="128">
+      </a>
+
+      <a href="" target="_blank">
+        <img src="/images/buttons/banner2.gif" alt="banner2">
+      </a>
+    </div>
+  </section>
+
+  <!-- 🔗 Link me section
+  <section class="panel">
+    <h3>LINK ME</h3>
+    <p>Feel free to use my button:</p>
+
+    <img src="/images/buttons/your-button.gif" alt="My button">
+
+    <pre><code>&lt;a href="https://your-site.com"&gt;
+  &lt;img src="https://your-site.com/images/buttons/your-button.gif"&gt;
+&lt;/a&gt;</code></pre>
+  </section> -->
+
+</main>
+
     <footer class="status-footer">
   <div class="footer-container">
     <div class="theme-switcher">
-      MODE: <button id="theme-toggle" aria-live="polite">[ AUTO ]</button>
-    </div>
+  <button id="theme-toggle" aria-label="Toggle theme">
+    🌞 / 🌙 / 🔄
+  </button>
+</div>
     <div class="footer-status">
       ✨ Currently: <span id="status-message"></span>
     </div>

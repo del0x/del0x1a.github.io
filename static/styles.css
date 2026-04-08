@@ -7,31 +7,10 @@
   --footer-bg: #2F4F4F;
   --footer-text: #F5F1E6;
   --dot-opacity: 0.02;
-}
 
-/* Dark Mode Overrides */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light-mode){
-    --bg-color: #1A1A1A;    /* Dark Charcoal */
-    --text-main: #E0E0E0;   /* Light Gray */
-    --text-accent: #8FBC8F; /* Dark Sea Green (better contrast) */
-    --highlight: #B08D57;   /* Brighter Gold/Bronze */
-    --footer-bg: #000000;
-    --footer-text: #E0E0E0;
-    --dot-opacity: 0.1;     /* More visible dots on dark */
-  }
-}
-
-
-/* Forced Dark Mode (Manual override) */
-.dark-mode {
-  --bg-color: #1A1A1A;
-  --text-main: #E0E0E0;
-  --text-accent: #8FBC8F;
-  --highlight: #B08D57;
-  --footer-bg: #000000;
-  --footer-text: #E0E0E0;
-  --dot-opacity: 0.1;
+  --panel-bg: #FFF6E0;
+  --border-light: #FFFFFF;
+  --border-dark: #8C5E3C;
 }
 
 /* Forced Light Mode (Manual override) */
@@ -43,8 +22,120 @@
   --footer-bg: #2F4F4F;
   --footer-text: #F5F1E6;
   --dot-opacity: 0.02;
+  --panel-bg: #FFF6E0;
+  --border-light: #B08D57;
+  --border-dark: #2F4F4F;
 }
 
+/* Panels (light mode enhancement) */
+.light-mode .panel {
+  background-color: var(--panel-bg);
+  border: 2px solid var(--border-dark);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 5px 5px 0 var(--border-light); /* mimic dark-mode neon pop but subtle */
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.light-mode .panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 var(--border-light);
+}
+
+/* Body background: subtle parchment gradient */
+body.light-mode {
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(rgba(255,255,255,var(--dot-opacity)) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,var(--dot-opacity)) 1px, transparent 1px);
+  background-size: 5px 5px, 8px 8px;
+  background-position: 0 0, 3px 3;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+/* Dark Mode: Terminal / Cyberpunk Palette */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-mode){
+    --bg-color: #0D0D0D;          /* Terminal black */
+    --text-main: #C0FFEE;         /* Neon greenish-white */
+    --text-accent: #FF6AFF;       /* Magenta */
+    --highlight: #00FFFF;         /* Cyan buttons/highlights */
+    --footer-bg: #0D0D0D;
+    --footer-text: #C0FFEE;
+    --dot-opacity: 0.08;          /* slightly visible neon dots */
+    --panel-bg: #111111;          /* dark panels */
+    --border-light: #33FF33;      /* neon green top-left shadow */
+    --border-dark: #003300;       /* dark shadow bottom-right */
+  }
+}
+
+/* Forced Dark Mode (Cyberpunk) */
+.dark-mode {
+  --bg-color: #0D0D0D;
+  --text-main: #C0FFEE;
+  --text-accent: #FF6AFF;
+  --highlight: #00FFFF;
+  --footer-bg: #0D0D0D;
+  --footer-text: #C0FFEE;
+  --dot-opacity: 0.08;
+  --panel-bg: #111111;
+  --border-light: #33FF33;
+  --border-dark: #003300;
+}
+
+/* Code blocks in Cyberpunk dark mode */
+.dark-mode pre {
+  background: #111111;
+  border-color: #00FFFF;
+}
+
+.dark-mode code {
+  background: rgba(0,255,255,0.08);
+  color: #C0FFEE;
+}
+
+/* Links & Buttons in Cyberpunk dark mode */
+.dark-mode header nav a,
+.dark-mode .notes-list li a,
+.dark-mode .social-links,
+.dark-mode .panel a:not(.buttons-grid a) {
+  color: var(--text-accent);
+}
+
+.dark-mode header nav a:hover,
+.dark-mode .notes-list li a:hover,
+.dark-mode .social-links:hover,
+.dark-mode .panel a:not(.buttons-grid a):hover {
+  color: var(--highlight);
+}
+
+.dark-mode .buttons-grid a {
+  background: var(--panel-bg);
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+}
+
+.dark-mode .buttons-grid a:hover {
+  transform: translateY(-1px);
+  border-color: var(--highlight);
+}
+
+.dark-mode .buttons-grid a:active {
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  transform: translateY(1px);
+}
+
+/* Footer neon vibe */
+.dark-mode .status-footer {
+  background-color: #0D0D0D;
+  color: #C0FFEE;
+  border-top: 2px solid #00FFFF;
+}
+
+
+
+/* Theme toggle button */
 #theme-toggle {
   background: none;
   border: none;
@@ -75,13 +166,23 @@ body {
   background-color: var(--bg-color);
   flex-direction: column;
   min-height: 100vh;
-  /* Dynamic dot grid based on theme */
+
+  /* Dynamic dot grid */
   background-image: 
     radial-gradient(rgba(255,255,255, var(--dot-opacity)) 1px, transparent 1px),
     radial-gradient(rgba(0,0,0, var(--dot-opacity)) 1px, transparent 1px);
   background-size: 5px 5px, 8px 8px;
-  background-position: 0 0, 3px 3px;
+  background-position: 0 0, 3px 3;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Panels (articles, button wall, link-me sections) */
+.panel {
+  background-color: var(--panel-bg);
+  border: 2px solid var(--border-dark);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 5px 5px 0 var(--border-light);
 }
 
 /* Header */
@@ -92,7 +193,7 @@ header {
 .header-container {
   max-width: 750px;
   margin: 0 auto;
-  padding: 1rem 2rem 1rem 1rem; 
+  padding: 0 1.5rem; 
 }
 
 .site-title {
@@ -108,7 +209,7 @@ header nav {
   align-items: center;
   gap: 1rem;
   margin-top: 0.25rem;
-  padding-left: 2rem;
+  padding-left: 0rem;
 }
 
 .nav-gif img {
@@ -139,12 +240,7 @@ main {
   margin-bottom: 150px;
 }
 
-article {
-  padding: 0 2rem;
-}
-
 article h2 {
-  font-family: "Geist Mono", monospace;
   font-size: 1.75rem;
   margin-bottom: 1.25rem;
   color: var(--text-main);
@@ -154,35 +250,47 @@ article h2 {
   padding-bottom: 0.5rem;
 }
 
-article p {
-  margin: 1.25rem 0;
-  font-family: Georgia, serif;
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: var(--text-main);
-}
-
-/* List Items */
-.notes-list {
-  list-style: none;
-  margin: 1rem auto 0 auto;
-  max-width: 750px;
-  padding: 0;
-}
-
-.notes-list li a {
+/* Button Wall */
+.button-wall h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 1px;
   color: var(--text-accent);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.125rem;
 }
 
-.notes-list li a:hover {
-  color: var(--highlight);
-  text-decoration: underline;
+.buttons-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
 }
 
-/* Footer Styles */
+.buttons-grid a {
+  display: inline-block;
+  border: 2px solid;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  background: var(--panel-bg);
+  padding: 1px;
+  transition: transform 0.05s ease;
+}
+
+.buttons-grid img {
+  width: 88px;
+  height: 31px;
+  image-rendering: pixelated;
+  display: block;
+}
+
+.buttons-grid a:hover {
+  transform: translateY(-1px);
+}
+
+.buttons-grid a:active {
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  transform: translateY(1px);
+}
+
+/* Footer */
 .status-footer {
   position: fixed;
   left: 0;
@@ -218,31 +326,29 @@ article p {
   color: var(--highlight);
 }
 
-/* Social Links */
-.social-link {
-  font-family: "Geist Mono", monospace;
-  font-weight: 600;
-  color: var(--text-accent);
-  text-decoration: underline;
-  text-decoration-thickness: 3px;
-  transition: color 0.2s ease;
+/* Code blocks */
+pre {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--highlight);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
-.social-link.github { text-decoration-color: #E1306C; }
-.social-link.email  { text-decoration-color: #0077B5; }
-.social-link.itch   { text-decoration-color: violet; }
-.social-link.umami  { text-decoration-color: yellow; }
+pre code {
+  color: var(--text-main);
+  font-family: "Geist Mono", monospace;
+}
 
-/* Mobile Tweaks */
-@media (max-width: 600px) {
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-  }
-  .social-links {
-    flex-direction: column;
-    align-items: center;
-  }
+code {
+  background: rgba(0,0,0,0.06);
+  color: var(--text-main);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
 }
 
 /* Custom bullets only for Note content and Resources */
@@ -270,52 +376,44 @@ article p {
   font-weight: bold;
 }
 
-/* Code Blocks */
-pre {
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid var(--highlight);
-  border-radius: 6px;
-  padding: 1rem 1.25rem;
-  margin: 1.5rem 0;
-  overflow-x: auto;
-  font-size: 0.9rem;
-  line-height: 1.6;
+
+.social-links:hover,
+.panel a:not(.buttons-grid a):hover {
+  color: var(--highlight);
+  text-decoration: underline;
 }
 
-/* Dark mode tweak */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light-mode) pre {
-    background: rgba(255, 255, 255, 0.04);
-  }
-}
-
-.dark-mode pre {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-/* Code text */
-pre code {
-  background: none;
-  padding: 0;
-  color: var(--text-main);
+/* Social Links */
+.social-link {
   font-family: "Geist Mono", monospace;
+  font-weight: 600;
+  color: var(--text-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  transition: color 0.2s ease;
 }
 
-/* Inline code */
-code {
-  background: rgba(0, 0, 0, 0.06);
-  color: var(--text-main);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-size: 0.9em;
+.social-link.github { text-decoration-color: #E1306C; }
+.social-link.email  { text-decoration-color: #0077B5; }
+.social-link.itch   { text-decoration-color: violet; }
+.social-link.umami  { text-decoration-color: yellow; }
+
+/* List Items */
+.notes-list {
+  list-style: none;
+  margin: 1rem auto 0 auto;
+  max-width: 750px;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not(.light-mode) code {
-    background: rgba(255, 255, 255, 0.08);
-  }
+.notes-list li a {
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.125rem;
 }
 
-.dark-mode code {
-  background: rgba(255, 255, 255, 0.08);
+.notes-list li a:hover {
+  color: var(--highlight);
+  text-decoration: underline;
 }

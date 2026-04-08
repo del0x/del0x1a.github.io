@@ -1,6 +1,6 @@
 ---
 title: Unbricking my Tada68
-date: 2026-29-03
+date: 2026-03-29
 tags: [mechanical_keyboards]
 resources:
   - https://docs.qmk.fm/newbs_getting_started

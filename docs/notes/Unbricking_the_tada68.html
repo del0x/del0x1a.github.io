@@ -51,26 +51,19 @@
 <main>
   <article>
     <h2>Unbricking my Tada68</h2>
-    <p><em>2026-04-02</em></p>
-    <p style="font-family: 'Geist Mono', monospace; font-size: 1rem; color: var(--highlight); margin-top: 1.5rem; margin-bottom: 0.5rem;">TAGS</p>
-    <p>
-    <span style="color: var(--text-accent);">
-      
-      [mechanical_keyboards]
-      
-    </span>
-  
-</p>
-    <p style="font-family: 'Geist Mono', monospace; font-size: 1rem; color: var(--highlight); margin-top: 1.5rem; margin-bottom: 0.5rem;">RESOURCES</p>
-    <ul class="resources-list">
-      
-    </ul>
-    <div class="note-body">
-      <ul>
-<li>https://docs.qmk.fm/newbs_getting_started</li>
-</ul>
-<hr />
-<p>Suppose I should preface this one with:</p>
+
+      <div class="panel">
+        <p><em>2026-03-29</em></p>
+        <p style="font-family: 'Geist Mono', monospace; font-size: 1rem; color: var(--highlight); margin-top: 1.5rem; margin-bottom: 0.5rem;">TAGS</p>
+        <p>
+          
+            <span class="tag">mechanical_keyboards</span>
+          
+        </p>
+      </div>
+
+    <div class="note-body panel">
+      <p>Suppose I should preface this one with:</p>
 <p>WARNING DO THIS AT YOUR OWN RISK, I'M NOT LIABLE FOR ANY DAMAGES.</p>
 <p>The Tada68 was the my first foray into the world of mechanical keyboards. I got it just before starting at university and it carried me through the entire duration of it. After graduation I started working and finally had a bit more disposable income and so I started diving deeper into the world of mechanical keyboards, which led to my Tada68 taking the backseat for a good while. </p>
 <p>After many years I decided to take out the ol' reliable and try it out again, see if it still felt good to type on and if my tastes had changed since way back then. Unfortunately when I tried to plug it into my computer, it gave no response. Tried the same for several different environments, both Windows and Linux but it refused. I could see that it had power since the backlight was on but the keys were not responding at all. So, this lead me to figuring out how to unbrick it, which seems like it is notorious for doing due to using the QMK firmware. I didn't read too much into it other than that, could be that there exists updates which fix all these issues etc etc, maintained software is rarely static to say the least. In any case, enough yapping!</p>
@@ -97,14 +90,27 @@
 <p>Congratulations on flashing and fixing your Tada68. Now this is what worked for me and might just be specific for me, who knows. I imagine that these instructions could be generalized to other keyboards as well. The qmk software was quite nice and easy to use.</p>
 <p>Hopefully I won't need to do this in the future...</p>
     </div>
+
+      <div class="panel">
+        <p style="font-family: 'Geist Mono', monospace; font-size: 1rem; color: var(--highlight); margin-top: 1.5rem; margin-bottom: 0.5rem;">RESOURCES</p>
+        <ul class="resources-list">
+          
+            <li>https://docs.qmk.fm/newbs_getting_started</li>
+          
+        </ul>
+      </div>
+
+
   </article>
 </main>
 
     <footer class="status-footer">
   <div class="footer-container">
     <div class="theme-switcher">
-      MODE: <button id="theme-toggle" aria-live="polite">[ AUTO ]</button>
-    </div>
+  <button id="theme-toggle" aria-label="Toggle theme">
+    🌞 / 🌙 / 🔄
+  </button>
+</div>
     <div class="footer-status">
       ✨ Currently: <span id="status-message"></span>
     </div>
