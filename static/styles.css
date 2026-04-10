@@ -144,8 +144,21 @@ body.light-mode {
   font-size: 0.9rem;
   font-weight: 800;
   cursor: pointer;
-  padding: 0;
   text-transform: uppercase;
+
+  /* added improvements */
+  padding: 6px 10px;
+  border: 1px solid var(--highlight);
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* optional: better hover feedback */
+#theme-toggle:hover {
+  background: var(--highlight);
+  color: var(--background);
 }
 
 /* Reset margins and padding */
@@ -164,6 +177,7 @@ body {
   line-height: 1.7;
   color: var(--text-main);
   background-color: var(--bg-color);
+  display: flex; /* Added for footer positioning */
   flex-direction: column;
   min-height: 100vh;
 
@@ -194,6 +208,7 @@ header {
   max-width: 750px;
   margin: 0 auto;
   padding: 0 1.5rem; 
+  box-sizing: border-box;
 }
 
 .site-title {
@@ -207,6 +222,7 @@ header nav {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap; /* Allows nav items to wrap on small screens */
   gap: 1rem;
   margin-top: 0.25rem;
   padding-left: 0rem;
@@ -235,9 +251,12 @@ header nav a:hover, header nav a.active {
 /* Main content */
 main {
   flex: 1;
+  width: 100%;
   max-width: 750px;
   margin: 0 auto;
   margin-bottom: 150px;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
 }
 
 article h2 {
@@ -262,13 +281,14 @@ article h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  justify-content: space-between;
   align-items: center;
 }
 
 .buttons-grid a {
   display: inline-block;
-  border: 2px solid;
-  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  /* border: 2px solid; */
+  /* border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light); */
   background: var(--panel-bg);
   padding: 1px;
   transition: transform 0.05s ease;
@@ -277,8 +297,11 @@ article h2 {
 .buttons-grid img {
   width: 90px;
   height: 31px;
-  image-rendering: pixelated;
   display: block;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .buttons-grid a:hover {
@@ -301,6 +324,7 @@ article h2 {
   border-top: 2px solid var(--highlight);
   padding: 8px 24px;
   box-sizing: border-box;
+  z-index: 100;
 }
 
 .footer-container {
@@ -336,6 +360,8 @@ pre {
   overflow-x: auto;
   font-size: 0.9rem;
   line-height: 1.6;
+  white-space: pre-wrap; /* Keeps code from breaking layout */
+  word-break: break-all;
 }
 
 pre code {
@@ -416,4 +442,42 @@ code {
 .notes-list li a:hover {
   color: var(--highlight);
   text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .site-title {
+    font-size: 1.5rem;
+  }
+  
+  header nav {
+    gap: 0.5rem;
+  }
+
+  header nav a {
+    font-size: 0.9rem;
+  }
+
+  .panel {
+    padding: 1rem;
+  }
+
+  article h2 {
+    font-size: 1.4rem;
+  }
+
+  .status-footer {
+    position: static; /* Let footer flow on mobile so it doesn't cover content */
+    padding: 1rem;
+  }
+  
+  main {
+    margin-bottom: 2rem; /* Reduce margin since footer isn't fixed */
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
 }
