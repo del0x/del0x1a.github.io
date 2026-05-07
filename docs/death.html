@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow">
   <title>~/0x1a.log</title>
   <link rel="icon" type="image/x-icon" href="/images/favicon.gif">
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
     </a>
   
     <a href="/notes/index"
-       class="active">
+       class="">
       Notes
     </a>
   
@@ -48,7 +48,7 @@
     </a>
   
     <a href="/death"
-       class="">
+       class="active">
       Death
     </a>
   
@@ -57,30 +57,53 @@
   </header>
     
 <main>
-  <article class="panel">
-    <h2>All Notes</h2>
-    <div>
-      <ul class="notes-list">
-        
-          <li>
-            <a href="/notes/Looking_closer_at_Whiskey.html">Looking closer at Whiskey</a>
-            <small>(2026-04-04)</small>
-          </li>
-        
-          <li>
-            <a href="/notes/Unbricking_the_tada68.html">Unbricking my Tada68</a>
-            <small>(2026-03-29)</small>
-          </li>
-        
-          <li>
-            <a href="/notes/The_Brick_of_Wisdom.html">The Brick of Wisdom</a>
-            <small>(2026-01-07)</small>
-          </li>
-        
-      </ul>
+  <article>
+    <h2>Death Clock</h2>
+
+    <div class="panel">
+      <div id="timer"></div>
     </div>
+
   </article>
 </main>
+
+<style>
+  #timer {
+    font-family: "Geist Mono", monospace;
+    font-size: 1.4rem;
+    color: var(--highlight);
+    letter-spacing: 2px;
+  }
+</style>
+
+<script>
+const death = 3734726400000;
+
+function tick() {
+  const dist = death - Date.now();
+
+  if (dist <= 0) {
+    document.getElementById("timer").textContent = "TIME HAS RUN OUT";
+    clearInterval(interval);
+    return;
+  }
+
+  const totalDays = dist / (1000 * 60 * 60 * 24);
+  const y = Math.floor(totalDays / 365.25);
+  const remainder = dist - y * 365.25 * 24 * 60 * 60 * 1000;
+  const d = Math.floor(remainder / (1000 * 60 * 60 * 24));
+  const h = Math.floor((remainder / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((remainder / (1000 * 60)) % 60);
+  const s = Math.floor((remainder / 1000) % 60);
+
+  document.getElementById("timer").textContent =
+    `${y}y ${d}d ${h}h ${m}m ${s}s remaining`;
+}
+
+tick();
+const interval = setInterval(tick, 1000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) tick(); });
+</script>
 
     <footer class="status-footer">
   <div class="footer-container">
@@ -100,9 +123,9 @@
     </div>
   </div>
 </footer>
-  <script src="../js/curr_act.js"></script>
-  <script src="../js/theme_toggle.js"></script>
+  <script src="js/curr_act.js"></script>
+  <script src="js/theme_toggle.js"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="3191ee62-7777-4372-bb11-a3045a55c24a"></script>
-  <script src="../js/pause_gif.js"></script>
+  <script src="js/pause_gif.js"></script>
 </body>
 </html>
