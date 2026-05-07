@@ -7,6 +7,7 @@
   --footer-bg: #2F4F4F;
   --footer-text: #F5F1E6;
   --dot-opacity: 0.02;
+  --note-body-text: #333333;
 
   --panel-bg: #FFF6E0;
   --border-light: #FFFFFF;
@@ -22,6 +23,7 @@
   --footer-bg: #2F4F4F;
   --footer-text: #F5F1E6;
   --dot-opacity: 0.02;
+  --note-body-text: #333333;
   --panel-bg: #FFF6E0;
   --border-light: #B08D57;
   --border-dark: #2F4F4F;
@@ -31,8 +33,8 @@
 .light-mode .panel {
   background-color: var(--panel-bg);
   border: 2px solid var(--border-dark);
-  padding: 1rem 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.75rem;
   box-shadow: 5px 5px 0 var(--border-light); /* mimic dark-mode neon pop but subtle */
   transition: transform 0.1s ease, box-shadow 0.2s ease;
 }
@@ -45,7 +47,7 @@
 /* Body background: subtle parchment gradient */
 body.light-mode {
   background-color: var(--bg-color);
-  background-image: 
+  background-image:
     radial-gradient(rgba(255,255,255,var(--dot-opacity)) 1px, transparent 1px),
     radial-gradient(rgba(0,0,0,var(--dot-opacity)) 1px, transparent 1px);
   background-size: 5px 5px, 8px 8px;
@@ -65,6 +67,7 @@ body.light-mode {
     --footer-bg: #0D0D0D;
     --footer-text: #C0FFEE;
     --dot-opacity: 0.08;          /* slightly visible neon dots */
+    --note-body-text: #A8D8C8;   /* softer for long reads */
     --panel-bg: #111111;          /* dark panels */
     --border-light: #33FF33;      /* neon green top-left shadow */
     --border-dark: #003300;       /* dark shadow bottom-right */
@@ -80,6 +83,7 @@ body.light-mode {
   --footer-bg: #0D0D0D;
   --footer-text: #C0FFEE;
   --dot-opacity: 0.08;
+  --note-body-text: #A8D8C8;
   --panel-bg: #111111;
   --border-light: #33FF33;
   --border-dark: #003300;
@@ -145,8 +149,6 @@ body.light-mode {
   font-weight: 800;
   cursor: pointer;
   text-transform: uppercase;
-
-  /* added improvements */
   padding: 6px 10px;
   border: 1px solid var(--highlight);
   border-radius: 6px;
@@ -158,7 +160,7 @@ body.light-mode {
 /* optional: better hover feedback */
 #theme-toggle:hover {
   background: var(--highlight);
-  color: var(--background);
+  color: var(--bg-color);
 }
 
 /* Reset margins and padding */
@@ -169,20 +171,23 @@ body, h1, h2, p {
 
 html {
   font-family: "Geist Mono", monospace;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: "Geist Mono", monospace;
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 20px;
+  line-height: 1.75;
   color: var(--text-main);
   background-color: var(--bg-color);
   display: flex; /* Added for footer positioning */
   flex-direction: column;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   /* Dynamic dot grid */
-  background-image: 
+  background-image:
     radial-gradient(rgba(255,255,255, var(--dot-opacity)) 1px, transparent 1px),
     radial-gradient(rgba(0,0,0, var(--dot-opacity)) 1px, transparent 1px);
   background-size: 5px 5px, 8px 8px;
@@ -194,25 +199,25 @@ body {
 .panel {
   background-color: var(--panel-bg);
   border: 2px solid var(--border-dark);
-  padding: 1rem 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.75rem;
   box-shadow: 5px 5px 0 var(--border-light);
 }
 
 /* Header */
 header {
-  padding: 1rem 0;
+  padding: 1.5rem 0;
 }
 
 .header-container {
-  max-width: 750px;
+  max-width: 72ch;
   margin: 0 auto;
-  padding: 0 1.5rem; 
+  padding: 0 2rem;
   box-sizing: border-box;
 }
 
 .site-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 600;
   color: var(--text-accent);
   margin-bottom: 0.5rem;
@@ -223,14 +228,14 @@ header nav {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap; /* Allows nav items to wrap on small screens */
-  gap: 1rem;
-  margin-top: 0.25rem;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
   padding-left: 0rem;
 }
 
 .nav-gif img {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   image-rendering: pixelated;
   display: inline-block;
   vertical-align: middle;
@@ -240,7 +245,7 @@ header nav a {
   color: var(--text-accent);
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 header nav a:hover, header nav a.active {
@@ -252,15 +257,15 @@ header nav a:hover, header nav a.active {
 main {
   flex: 1;
   width: 100%;
-  max-width: 750px;
+  max-width: 72ch;
   margin: 0 auto;
-  margin-bottom: 150px;
+  margin-bottom: 2rem;
   padding: 0 1.5rem;
   box-sizing: border-box;
 }
 
 article h2 {
-  font-size: 1.75rem;
+  font-size: 2.25rem;
   margin-bottom: 1.25rem;
   color: var(--text-main);
   text-transform: uppercase;
@@ -315,16 +320,12 @@ article h2 {
 
 /* Footer */
 .status-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
   background-color: var(--footer-bg);
   color: var(--footer-text);
   border-top: 2px solid var(--highlight);
-  padding: 8px 24px;
+  padding: 12px 24px;
   box-sizing: border-box;
-  z-index: 100;
 }
 
 .footer-container {
@@ -377,31 +378,139 @@ code {
   font-size: 0.9em;
 }
 
+/* Paragraph spacing inside note/essay body */
+.note-body p {
+  margin-bottom: 1.75rem;
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--note-body-text);
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
 /* Custom bullets only for Note content and Resources */
-.note-body ul, 
+.note-body ul,
 .resources-list {
-  list-style: none; 
-  padding-left: 1.5rem; 
+  list-style: none;
+  padding-left: 1.5rem;
   margin: 1rem 0;
 }
 
-.note-body ul li, 
+/* Numbered lists */
+.note-body ol {
+  list-style: decimal;
+  padding-left: 1.75rem;
+  margin: 1rem 0;
+}
+
+.note-body ol li {
+  margin-bottom: 0.85rem;
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--note-body-text);
+  padding-left: 0.25rem;
+}
+
+.note-body ol li::marker {
+  font-family: "Geist Mono", monospace;
+  font-weight: 700;
+  color: var(--highlight);
+}
+
+.note-body ul li,
 .resources-list li {
   position: relative;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.85rem;
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--note-body-text);
 }
 
 /* The actual >> replacement */
-.note-body ul li::before, 
+.note-body ul li::before,
 .resources-list li::before {
   content: ">>";
   position: absolute;
-  left: -1.5rem; 
+  left: -1.5rem;
   color: var(--highlight);
   font-family: "Geist Mono", monospace;
   font-weight: bold;
 }
 
+
+/* Note body subheadings */
+.note-body h3 {
+  font-family: "Geist Mono", monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-accent);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--highlight);
+  padding-bottom: 0.3rem;
+}
+
+.note-body h4 {
+  font-family: "Geist Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-accent);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Note body links */
+.note-body a {
+  color: var(--text-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.note-body a:hover {
+  color: var(--highlight);
+}
+
+/* Blockquotes */
+.note-body blockquote {
+  font-family: "Lora", Georgia, serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-accent);
+  border-left: 4px solid var(--highlight);
+  margin: 2rem 0;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+}
+
+.note-body blockquote p {
+  margin-bottom: 0;
+}
+
+/* Horizontal rule section breaks */
+.note-body hr {
+  border: none;
+  border-top: 1px solid var(--highlight);
+  margin: 2.5rem auto;
+  width: 40%;
+  opacity: 0.5;
+}
+
+/* Strong and em emphasis */
+.note-body strong {
+  font-weight: 700;
+  color: var(--text-accent);
+}
+
+.note-body em {
+  font-style: italic;
+  color: inherit;
+}
 
 .social-links:hover,
 .panel a:not(.buttons-grid a):hover {
@@ -428,7 +537,7 @@ code {
 .notes-list {
   list-style: none;
   margin: 1rem auto 0 auto;
-  max-width: 750px;
+  max-width: 72ch;
   padding: 0;
 }
 
@@ -436,7 +545,7 @@ code {
   color: var(--text-accent);
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.125rem;
+  font-size: 1.2rem;
 }
 
 .notes-list li a:hover {
@@ -447,9 +556,9 @@ code {
 /* Responsive Adjustments */
 @media (max-width: 600px) {
   .site-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
-  
+
   header nav {
     gap: 0.5rem;
   }
@@ -463,14 +572,13 @@ code {
   }
 
   article h2 {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
   }
 
   .status-footer {
-    position: static; /* Let footer flow on mobile so it doesn't cover content */
     padding: 1rem;
   }
-  
+
   main {
     margin-bottom: 2rem; /* Reduce margin since footer isn't fixed */
   }
@@ -479,5 +587,100 @@ code {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+}
+
+/* Selection highlight */
+::selection {
+  background: var(--highlight);
+  color: var(--bg-color);
+}
+
+/* Focus visible outlines (keyboard nav accessibility) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--highlight);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Figure captions */
+.note-body figcaption {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--text-accent);
+  text-align: center;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+/* Drop cap on first paragraph of essay */
+.note-body > p:first-of-type::first-letter {
+  font-family: "Lora", Georgia, serif;
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1;
+  float: left;
+  margin-right: 0.1em;
+  margin-top: 0.05em;
+  color: var(--highlight);
+}
+
+/* Reading progress bar */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--highlight);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* Soften dark mode body text to reduce eye strain on long reads — handled via --note-body-text variable */
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    background-image: none !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+
+  header nav,
+  #theme-toggle,
+  .status-footer,
+  .button-wall,
+  #reading-progress,
+  .nav-gif {
+    display: none !important;
+  }
+
+  .panel {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+
+  .note-body p,
+  .note-body li {
+    color: black !important;
+    font-family: Georgia, serif;
+  }
+
+  article h2 {
+    color: black !important;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+  }
+
+  main {
+    max-width: 100% !important;
+    margin-bottom: 0 !important;
   }
 }
