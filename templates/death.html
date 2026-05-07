@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+  <article>
+    <h2>Death Clock</h2>
+
+    <div class="panel">
+      <div id="timer"></div>
+    </div>
+
+  </article>
+</main>
+
+<style>
+  #timer {
+    font-family: "Geist Mono", monospace;
+    font-size: 1.4rem;
+    color: var(--highlight);
+    letter-spacing: 2px;
+  }
+</style>
+
+<script>
+const death = 3734726400000;
+
+function tick() {
+  const dist = death - Date.now();
+
+  if (dist <= 0) {
+    document.getElementById("timer").textContent = "TIME HAS RUN OUT";
+    clearInterval(interval);
+    return;
+  }
+
+  const totalDays = dist / (1000 * 60 * 60 * 24);
+  const y = Math.floor(totalDays / 365.25);
+  const remainder = dist - y * 365.25 * 24 * 60 * 60 * 1000;
+  const d = Math.floor(remainder / (1000 * 60 * 60 * 24));
+  const h = Math.floor((remainder / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((remainder / (1000 * 60)) % 60);
+  const s = Math.floor((remainder / 1000) % 60);
+
+  document.getElementById("timer").textContent =
+    `${y}y ${d}d ${h}h ${m}m ${s}s remaining`;
+}
+
+tick();
+const interval = setInterval(tick, 1000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) tick(); });
+</script>
+{% endblock %}
