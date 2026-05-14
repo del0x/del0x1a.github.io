@@ -149,8 +149,8 @@ def build():
     template = site.get_template("birb.html")
     (OUTPUT_DIR / "birb.html").write_text(template.render(baseurl="", current_page="/???"), encoding="utf-8")
 
-    template = site.get_template("death.html")
-    (OUTPUT_DIR / "death.html").write_text(template.render(baseurl="", current_page="/death"), encoding="utf-8")
+    template = site.get_template("clock.html")
+    (OUTPUT_DIR / "clock.html").write_text(template.render(baseurl="", current_page="/clock"), encoding="utf-8")
 
     # Copy static assets
     print("Copying static files...")
