@@ -4,7 +4,8 @@
   <article>
     <h2>Death Clock</h2>
 
-    <div class="panel">
+    <div class="panel clock-panel">
+      <img src="images/sad_cat1.jpg" alt="sad cat" class="clock-cat">
       <div id="timer"></div>
     </div>
 
@@ -12,40 +13,28 @@
 </main>
 
 <style>
+  .clock-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .clock-cat {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 4px;
+    display: block;
+  }
+
   #timer {
     font-family: "Geist Mono", monospace;
     font-size: 1.4rem;
     color: var(--highlight);
     letter-spacing: 2px;
+    text-align: center;
   }
 </style>
 
-<script>
-const death = 3734726400000;
-
-function tick() {
-  const dist = death - Date.now();
-
-  if (dist <= 0) {
-    document.getElementById("timer").textContent = "TIME HAS RUN OUT";
-    clearInterval(interval);
-    return;
-  }
-
-  const totalDays = dist / (1000 * 60 * 60 * 24);
-  const y = Math.floor(totalDays / 365.25);
-  const remainder = dist - y * 365.25 * 24 * 60 * 60 * 1000;
-  const d = Math.floor(remainder / (1000 * 60 * 60 * 24));
-  const h = Math.floor((remainder / (1000 * 60 * 60)) % 24);
-  const m = Math.floor((remainder / (1000 * 60)) % 60);
-  const s = Math.floor((remainder / 1000) % 60);
-
-  document.getElementById("timer").textContent =
-    `${y}y ${d}d ${h}h ${m}m ${s}s remaining`;
-}
-
-tick();
-const interval = setInterval(tick, 1000);
-document.addEventListener("visibilitychange", () => { if (!document.hidden) tick(); });
-</script>
+<script src="js/clock.js"></script>
 {% endblock %}

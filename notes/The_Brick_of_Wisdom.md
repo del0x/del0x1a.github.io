@@ -8,7 +8,7 @@ resources:
 
 ---
 
-The general recommendation to read Code Complete is something which you're often met with in university if not online discussion boards. My professor recommended the "Brick" to the class which would help you skip 5 years of active development experience if you actually read through the book and also applied the different practices. In 2025, I think it's hard to say that everything in the book is still relevant (for some, it might be for sure - who am I to say otherwise? Whatever works for you, friend.), especially given the pace of advancement in technology. Hence this is my attempt at extracting the nuggets of wisdom which make sense and are relevant to me as a data engineer mostly working with Python.
+The general recommendation to read Code Complete is something which you're often met with in university if not online discussion boards. My professor recommended the "Brick" to the class which would help you skip 5 years of active development experience if you actually read through the book and also applied the different practices. In 2025, I think it's hard to say that everything in the book is still relevant (for some it sure is), especially given the pace of advancement in technology. Hence this is my attempt at extracting the nuggets of wisdom which make sense and are relevant to me as a data engineer mostly working with Python.
 
 General recommendations seems to be the following chapters.
 

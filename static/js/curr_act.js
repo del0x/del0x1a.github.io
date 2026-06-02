@@ -17,8 +17,7 @@ gif.addEventListener("click", () => {
 });
 
 }
- 
- 
+
 function currentActivity() {
   // Array of possible activities with emojis
     const activities = [
@@ -82,5 +81,5 @@ function getTime() {
 }
 
 
- currentActivity();
- getTime();
+currentActivity();
+getTime();

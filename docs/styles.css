@@ -684,3 +684,24 @@ button:focus-visible {
     margin-bottom: 0 !important;
   }
 }
+
+#timer {
+  font-family: "Geist Mono", monospace;
+  font-size: 1.4rem;
+  color: var(--highlight);
+  letter-spacing: 2px;
+}
+
+.clock-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.clock-cat {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 4px;
+  display: block;
+}
