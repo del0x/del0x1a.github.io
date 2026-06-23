@@ -139,6 +139,123 @@ body.light-mode {
 
 
 
+/* ==========================================================================
+   PSX Theme: Light
+   ========================================================================== */
+
+.psx-light {
+  --bg-color: #A8A8D0;
+  --panel-bg: #C0C0E0;
+  --text-main: #000018;
+  --text-accent: #2020A0;
+  --highlight: #A02060;
+  --footer-bg: #202048;
+  --footer-text: #C8C8FF;
+  --dot-opacity: 0;
+  --note-body-text: #08081A;
+  --border-light: #E0E0FF;
+  --border-dark: #404060;
+  --border-deep: #202030;
+  --scanlines: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect x='1' y='0' width='1' height='1' fill='rgba(0%2C0%2C0%2C0.06)'/%3E%3Crect x='0' y='1' width='1' height='1' fill='rgba(0%2C0%2C0%2C0.06)'/%3E%3C/svg%3E");
+}
+
+.psx-light .panel {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: 1px 1px 0px var(--border-deep);
+  transition: none;
+}
+
+.psx-light .panel:hover {
+  transform: none;
+  box-shadow: 1px 1px 0px var(--border-deep);
+}
+
+.psx-light .status-footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 2px solid var(--border-dark);
+}
+
+
+/* ==========================================================================
+   PSX Theme: Dark
+   ========================================================================== */
+
+.psx-dark {
+  --bg-color: #000018;
+  --panel-bg: #00001E;
+  --text-main: #C8C8FF;
+  --text-accent: #8080FF;
+  --highlight: #FF80C0;
+  --footer-bg: #00000E;
+  --footer-text: #8080C0;
+  --dot-opacity: 0;
+  --note-body-text: #C0C0F0;
+  --border-light: #6060A0;
+  --border-dark: #000010;
+  --border-deep: #000008;
+  --scanlines: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect x='1' y='0' width='1' height='1' fill='rgba(200%2C200%2C255%2C0.04)'/%3E%3Crect x='0' y='1' width='1' height='1' fill='rgba(200%2C200%2C255%2C0.04)'/%3E%3C/svg%3E");
+}
+
+.psx-dark .panel {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: 1px 1px 0px var(--border-deep);
+  transition: none;
+}
+
+.psx-dark pre {
+  background: #000012;
+  border-color: var(--border-light);
+}
+
+.psx-dark code {
+  background: rgba(128, 128, 255, 0.15);
+  color: var(--highlight);
+}
+
+.psx-dark header nav a,
+.psx-dark .notes-list li a,
+.psx-dark .panel a:not(.buttons-grid a) {
+  color: var(--text-main);
+}
+
+.psx-dark header nav a:hover,
+.psx-dark .notes-list li a:hover,
+.psx-dark .panel a:not(.buttons-grid a):hover {
+  color: var(--highlight);
+}
+
+.psx-dark .buttons-grid a {
+  background: var(--panel-bg);
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+}
+
+.psx-dark .status-footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 2px solid var(--border-light);
+}
+
+
+/* ==========================================================================
+   PSX Shared Body Overrides
+   ========================================================================== */
+
+body.psx-light,
+body.psx-dark {
+  font-family: "VT323", monospace;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  background-image: var(--scanlines);
+  background-size: 2px 2px;
+  transition: none;
+}
+
+
 /* Theme toggle button */
 #theme-toggle {
   background: none;

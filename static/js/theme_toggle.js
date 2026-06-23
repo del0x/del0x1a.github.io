@@ -1,6 +1,6 @@
 const toggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
-const themes = ['light', 'dark', 'auto'];
+const themes = ['light', 'dark', 'auto', 'psx-light', 'psx-dark'];
 
 // Initialize: Get preference from storage or default to 'auto'
 let savedTheme = localStorage.getItem('theme') || 'auto';
@@ -9,7 +9,7 @@ let currentIndex = themes.indexOf(savedTheme);
 // Apply the theme
 function updateTheme(theme) {
   // Remove all mode classes
-  body.classList.remove('light-mode', 'dark-mode');
+  body.classList.remove('light-mode', 'dark-mode', 'psx-light', 'psx-dark');
 
   if (theme === 'auto') {
     toggleBtn.textContent = '🔄'; // Auto/system
@@ -21,6 +21,14 @@ function updateTheme(theme) {
   } else if (theme === 'dark') {
     body.classList.add('dark-mode');
     toggleBtn.textContent = '🌙'; // Dark
+    localStorage.setItem('theme', theme);
+  } else if (theme === 'psx-light') {
+    body.classList.add('psx-light'); // Assuming PSX is a light theme
+    toggleBtn.textContent = '🎮'; // PSX
+    localStorage.setItem('theme', theme);
+  } else if (theme === 'psx-dark') {
+    body.classList.add('psx-dark'); // Assuming PSX is a dark theme
+    toggleBtn.textContent = '👾'; // PSX
     localStorage.setItem('theme', theme);
   }
 }

@@ -1,20 +1,19 @@
 /* ==========================================================================
-   PS1 / CRT RETRO WORKSTATION THEME (DROP-IN REPLACEMENT)
+   PSX / PS1 THEME — scoped to body.psx-light and body.psx-dark
+   Loaded alongside styles.css. Only active when toggle sets the class.
    ========================================================================== */
 
-:root {
-  /* PS1 / PSX Light Mode — Cool Lavender Shell */
-  --bg-color: #A8A8D0;         /* PS1 startup lavender-grey */
-  --panel-bg: #C0C0E0;         /* Raised panel face */
-  --text-main: #000018;        /* Near-black with navy cast */
-  --text-accent: #2020A0;      /* PS1 deep blue */
-  --highlight: #A02060;        /* PS1 selected magenta */
-  --footer-bg: #202048;        /* Dark status bar */
-  --footer-text: #C8C8FF;      /* PS1 BIOS text lavender */
+/* --- PSX Light: Cool Lavender Shell --- */
+body.psx-light {
+  --bg-color: #A8A8D0;
+  --panel-bg: #C0C0E0;
+  --text-main: #000018;
+  --text-accent: #2020A0;
+  --highlight: #A02060;
+  --footer-bg: #202048;
+  --footer-text: #C8C8FF;
   --dot-opacity: 0;
   --note-body-text: #08081A;
-
-  /* PS1 Bevel: lighter top-left, black bottom-right */
   --border-light: #E0E0FF;
   --border-dark: #404060;
   --border-deep: #202030;
@@ -22,8 +21,531 @@
   --scanlines: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect x='1' y='0' width='1' height='1' fill='rgba(0%2C0%2C0%2C0.06)'/%3E%3Crect x='0' y='1' width='1' height='1' fill='rgba(0%2C0%2C0%2C0.06)'/%3E%3C/svg%3E");
 }
 
-/* Forced Light Mode Override */
-.light-mode {
+/* --- PSX Dark: BIOS Navy --- */
+body.psx-dark {
+  --bg-color: #000018;
+  --panel-bg: #00001E;
+  --text-main: #C8C8FF;
+  --text-accent: #8080FF;
+  --highlight: #FF80C0;
+  --footer-bg: #00000E;
+  --footer-text: #8080C0;
+  --dot-opacity: 0;
+  --note-body-text: #C0C0F0;
+  --border-light: #6060A0;
+  --border-dark: #000010;
+  --border-deep: #000008;
+  --text-glow: 0 0 6px rgba(200, 200, 255, 0.35);
+  --scanlines: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect x='1' y='0' width='1' height='1' fill='rgba(200%2C200%2C255%2C0.04)'/%3E%3Crect x='0' y='1' width='1' height='1' fill='rgba(200%2C200%2C255%2C0.04)'/%3E%3C/svg%3E");
+}
+
+
+/* ==========================================================================
+   Shared body overrides
+   ========================================================================== */
+
+body.psx-light,
+body.psx-dark {
+  font-family: "VT323", monospace;
+  font-size: 20px;
+  line-height: 1.75;
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  text-shadow: var(--text-glow);
+  background-image: var(--scanlines);
+  background-size: 2px 2px;
+  background-position: 0 0;
+  transition: background-color 0.15s steps(3), color 0.15s steps(3);
+}
+
+body.psx-light img,
+body.psx-dark img {
+  image-rendering: pixelated;
+}
+
+/* Panels */
+body.psx-light .panel,
+body.psx-dark .panel {
+  background-color: var(--panel-bg);
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: 1px 1px 0px 0px var(--border-deep);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.75rem;
+  transform: none;
+  transition: none;
+}
+
+body.psx-light .panel:hover,
+body.psx-dark .panel:hover {
+  transform: none;
+  box-shadow: 1px 1px 0px 0px var(--border-deep);
+}
+
+/* Theme toggle */
+body.psx-light #theme-toggle,
+body.psx-dark #theme-toggle {
+  background: var(--panel-bg);
+  color: var(--text-main);
+  font-family: "VT323", monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: 1px 1px 0px var(--border-deep);
+  border-radius: 0px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-shadow: var(--text-glow);
+}
+
+body.psx-light #theme-toggle:hover,
+body.psx-dark #theme-toggle:hover {
+  background: var(--panel-bg);
+  color: var(--highlight);
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+}
+
+body.psx-light #theme-toggle:active,
+body.psx-dark #theme-toggle:active {
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  box-shadow: none;
+  padding: 6px 11px 4px 13px;
+}
+
+/* Site title */
+body.psx-light .site-title,
+body.psx-dark .site-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-accent);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+/* Nav gif */
+body.psx-light .nav-gif img,
+body.psx-dark .nav-gif img {
+  border: 2px solid var(--border-dark);
+}
+
+/* Nav links */
+body.psx-light header nav a,
+body.psx-dark header nav a {
+  color: var(--text-accent);
+  font-weight: 700;
+  padding: 2px 6px;
+  border: 1px dashed transparent;
+  text-decoration: none;
+}
+
+body.psx-light header nav a:hover,
+body.psx-light header nav a.active,
+body.psx-dark header nav a:hover,
+body.psx-dark header nav a.active {
+  color: var(--highlight);
+  text-decoration: none;
+  border-color: var(--highlight);
+  background: rgba(0,0,0,0.05);
+}
+
+/* Article heading */
+body.psx-light article h2,
+body.psx-dark article h2 {
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px dashed var(--text-accent);
+  padding-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   Button Wall
+   ========================================================================== */
+
+body.psx-light .button-wall,
+body.psx-dark .button-wall {
+  border-bottom: 1px solid var(--border-dark);
+}
+
+body.psx-light .buttons-grid,
+body.psx-dark .buttons-grid {
+  gap: 4px;
+  justify-content: flex-start;
+}
+
+body.psx-light .buttons-grid a,
+body.psx-dark .buttons-grid a {
+  background: var(--panel-bg);
+  padding: 2px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: 1px 1px 0px var(--border-deep);
+  transition: none;
+}
+
+body.psx-light .buttons-grid a:hover,
+body.psx-dark .buttons-grid a:hover {
+  transform: none;
+  border-color: var(--highlight) var(--border-dark) var(--border-dark) var(--highlight);
+}
+
+body.psx-light .buttons-grid a:active,
+body.psx-dark .buttons-grid a:active {
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+body.psx-light .status-footer,
+body.psx-dark .status-footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 2px solid var(--border-dark);
+  padding: 10px 24px 12px 24px;
+  box-shadow: inset 0 2px 0 var(--border-light);
+}
+
+body.psx-light .footer-copy,
+body.psx-light .footer-timezone,
+body.psx-light .footer-status,
+body.psx-dark .footer-copy,
+body.psx-dark .footer-timezone,
+body.psx-dark .footer-status {
+  font-family: "VT323", monospace;
+  color: var(--footer-text);
+  text-transform: uppercase;
+}
+
+body.psx-light .footer-copy a,
+body.psx-dark .footer-copy a {
+  color: var(--footer-text);
+  text-decoration: underline;
+}
+
+body.psx-light .footer-copy a:hover,
+body.psx-dark .footer-copy a:hover {
+  color: var(--highlight);
+}
+
+/* ==========================================================================
+   Code blocks
+   ========================================================================== */
+
+body.psx-light pre,
+body.psx-dark pre {
+  background: rgba(0, 0, 0, 0.08);
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  border-radius: 0px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+body.psx-dark pre {
+  background: #000012;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: inset 1px 1px 2px var(--border-deep);
+}
+
+body.psx-light pre code,
+body.psx-dark pre code {
+  color: var(--text-main);
+  font-family: "VT323", monospace;
+}
+
+body.psx-light code,
+body.psx-dark code {
+  background: rgba(0,0,0,0.08);
+  color: var(--text-main);
+  padding: 0.1em 0.3em;
+  border-radius: 0px;
+  font-size: 0.9em;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+body.psx-dark code {
+  background: rgba(128, 128, 255, 0.15);
+  color: var(--highlight);
+  text-shadow: var(--text-glow);
+}
+
+/* ==========================================================================
+   Note body
+   ========================================================================== */
+
+body.psx-light .note-body p,
+body.psx-dark .note-body p {
+  margin-bottom: 1.75rem;
+  color: var(--note-body-text);
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
+body.psx-light .note-body ol li::marker,
+body.psx-dark .note-body ol li::marker {
+  font-family: "VT323", monospace;
+  font-weight: 700;
+  color: var(--text-accent);
+}
+
+body.psx-light .note-body ul li::before,
+body.psx-dark .note-body ul li::before,
+body.psx-light .resources-list li::before,
+body.psx-dark .resources-list li::before {
+  content: "»";
+  color: var(--text-accent);
+  font-family: "VT323", monospace;
+  font-weight: bold;
+}
+
+body.psx-light .note-body h3,
+body.psx-dark .note-body h3 {
+  font-family: "VT323", monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-accent);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px dashed var(--border-dark);
+  padding-bottom: 0.3rem;
+}
+
+body.psx-light .note-body h4,
+body.psx-dark .note-body h4 {
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-accent);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+body.psx-light .note-body a,
+body.psx-dark .note-body a {
+  color: var(--text-accent);
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: none;
+}
+
+body.psx-light .note-body a:hover,
+body.psx-dark .note-body a:hover {
+  color: var(--highlight);
+  background: rgba(0,0,0,0.04);
+}
+
+body.psx-light .note-body blockquote,
+body.psx-dark .note-body blockquote {
+  border-left: 3px solid var(--text-accent);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+body.psx-light .note-body hr,
+body.psx-dark .note-body hr {
+  border: none;
+  border-top: 2px dashed var(--border-dark);
+  margin: 2.5rem auto;
+  width: 60%;
+  opacity: 0.7;
+}
+
+body.psx-light .note-body strong,
+body.psx-dark .note-body strong {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   Social links
+   ========================================================================== */
+
+body.psx-light .social-link,
+body.psx-dark .social-link {
+  font-family: "VT323", monospace;
+  font-weight: 700;
+  color: var(--text-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+body.psx-light .social-link.github,
+body.psx-dark .social-link.github,
+body.psx-light .social-link.email,
+body.psx-dark .social-link.email,
+body.psx-light .social-link.itch,
+body.psx-dark .social-link.itch,
+body.psx-light .social-link.umami,
+body.psx-dark .social-link.umami {
+  text-decoration-color: var(--border-dark);
+}
+
+body.psx-light .social-links:hover,
+body.psx-dark .social-links:hover,
+body.psx-light .panel a:not(.buttons-grid a):hover,
+body.psx-dark .panel a:not(.buttons-grid a):hover {
+  color: var(--highlight);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   PSX dark — nav & link color overrides
+   ========================================================================== */
+
+body.psx-dark header nav a,
+body.psx-dark .notes-list li a,
+body.psx-dark .social-links,
+body.psx-dark .panel a:not(.buttons-grid a) {
+  color: var(--text-main);
+  text-shadow: var(--text-glow);
+}
+
+body.psx-dark header nav a:hover,
+body.psx-dark .notes-list li a:hover,
+body.psx-dark .social-links:hover,
+body.psx-dark .panel a:not(.buttons-grid a):hover {
+  color: var(--highlight);
+}
+
+body.psx-dark .buttons-grid a {
+  background: var(--panel-bg);
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+}
+
+body.psx-dark .buttons-grid a:hover {
+  border-color: var(--highlight) var(--border-dark) var(--border-dark) var(--highlight);
+}
+
+body.psx-dark .buttons-grid a:active {
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+}
+
+body.psx-dark .status-footer {
+  border-top: 2px solid var(--border-light);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* ==========================================================================
+   Notes list
+   ========================================================================== */
+
+body.psx-light .notes-list li {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+body.psx-light .notes-list li a,
+body.psx-dark .notes-list li a {
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: inline-block;
+}
+
+body.psx-light .notes-list li a:hover,
+body.psx-dark .notes-list li a:hover {
+  color: var(--highlight);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Accessibility & states
+   ========================================================================== */
+
+body.psx-light ::selection,
+body.psx-dark ::selection {
+  background: var(--text-main);
+  color: var(--bg-color);
+}
+
+body.psx-light a:focus-visible,
+body.psx-light button:focus-visible,
+body.psx-dark a:focus-visible,
+body.psx-dark button:focus-visible {
+  outline: 2px dotted var(--text-main);
+  outline-offset: 2px;
+}
+
+body.psx-light .note-body figcaption,
+body.psx-dark .note-body figcaption {
+  font-family: "VT323", monospace;
+  font-size: 0.8rem;
+  color: var(--text-accent);
+  text-align: center;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+}
+
+body.psx-light .note-body > p:first-of-type::first-letter,
+body.psx-dark .note-body > p:first-of-type::first-letter {
+  color: var(--text-accent);
+}
+
+body.psx-light #reading-progress,
+body.psx-dark #reading-progress {
+  background: var(--text-accent);
+}
+
+/* ==========================================================================
+   Clock page
+   ========================================================================== */
+
+body.psx-light #timer,
+body.psx-dark #timer {
+  font-family: "VT323", monospace;
+  font-size: 1.4rem;
+  color: var(--text-main);
+  background: rgba(0,0,0,0.05);
+  padding: 4px 12px;
+  border: 1px solid var(--border-dark);
+  letter-spacing: 1px;
+}
+
+body.psx-light .clock-cat,
+body.psx-dark .clock-cat {
+  border: 2px solid var(--border-dark);
+  border-radius: 0px;
+}
+
+/* ==========================================================================
+   Print — strip PSX styles for print
+   ========================================================================== */
+
+@media print {
+  body.psx-light,
+  body.psx-dark {
+    background: white !important;
+    background-image: none !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+}
+
   --bg-color: #A8A8D0;
   --panel-bg: #C0C0E0;
   --text-main: #000018;
