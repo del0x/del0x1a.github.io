@@ -1,0 +1,774 @@
+/* ==========================================================================
+   PS1 / CRT RETRO WORKSTATION THEME (DROP-IN REPLACEMENT)
+   ========================================================================== */
+
+:root {
+  /* PS1 / PSX Light Mode — Cool Lavender Shell */
+  --bg-color: #A8A8D0;         /* PS1 startup lavender-grey */
+  --panel-bg: #C0C0E0;         /* Raised panel face */
+  --text-main: #000018;        /* Near-black with navy cast */
+  --text-accent: #2020A0;      /* PS1 deep blue */
+  --highlight: #A02060;        /* PS1 selected magenta */
+  --footer-bg: #202048;        /* Dark status bar */
+  --footer-text: #C8C8FF;      /* PS1 BIOS text lavender */
+  --dot-opacity: 0;
+  --note-body-text: #08081A;
+
+  /* PS1 Bevel: lighter top-left, black bottom-right */
+  --border-light: #E0E0FF;
+  --border-dark: #404060;
+  --border-deep: #202030;
+  --text-glow: none;
+  --scanlines: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect x='1' y='0' width='1' height='1' fill='rgba(0%2C0%2C0%2C0.06)'/%3E%3Crect x='0' y='1' width='1' height='1' fill='rgba(0%2C0%2C0%2C0.06)'/%3E%3C/svg%3E");
+}
+
+/* Forced Light Mode Override */
+.light-mode {
+  --bg-color: #A8A8D0;
+  --panel-bg: #C0C0E0;
+  --text-main: #000018;
+  --text-accent: #2020A0;
+  --highlight: #A02060;
+  --footer-bg: #202048;
+  --footer-text: #C8C8FF;
+  --dot-opacity: 0;
+  --note-body-text: #08081A;
+  --border-light: #E0E0FF;
+  --border-dark: #404060;
+  --border-deep: #202030;
+  --text-glow: none;
+}
+
+/* Light Mode Enhancement Panels */
+.light-mode .panel {
+  background-color: var(--panel-bg);
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: 1px 1px 0px 0px var(--border-deep);
+  transform: none;
+}
+
+.light-mode .panel:hover {
+  transform: none;
+  box-shadow: 1px 1px 0px 0px var(--border-deep);
+}
+
+body.light-mode {
+  background-color: var(--bg-color);
+  background-image: var(--scanlines);
+  background-size: 2px 2px;
+}
+
+
+/* ==========================================================================
+   Dark Mode: Phosphor CRT Terminal Palette
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-mode) {
+    --bg-color: #000018;        /* PS1 BIOS near-black navy */
+    --panel-bg: #00001E;        /* Recessed panel housing */
+    --text-main: #C8C8FF;       /* Iconic PS1 BIOS lavender-white */
+    --text-accent: #8080FF;     /* PS1 blue */
+    --highlight: #FF80C0;       /* PS1 selected item magenta */
+    --footer-bg: #00000E;
+    --footer-text: #8080C0;
+    --dot-opacity: 0;
+    --note-body-text: #C0C0F0;
+    --border-light: #6060A0;    /* PS1 bevel highlight */
+    --border-dark: #000010;     /* PS1 bevel shadow */
+    --border-deep: #000008;
+    --text-glow: 0 0 6px rgba(200, 200, 255, 0.35);
+    --scanlines: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect x='1' y='0' width='1' height='1' fill='rgba(200%2C200%2C255%2C0.04)'/%3E%3Crect x='0' y='1' width='1' height='1' fill='rgba(200%2C200%2C255%2C0.04)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Forced Dark Mode Rules */
+.dark-mode {
+  --bg-color: #000018;
+  --panel-bg: #00001E;
+  --text-main: #C8C8FF;
+  --text-accent: #8080FF;
+  --highlight: #FF80C0;
+  --footer-bg: #00000E;
+  --footer-text: #8080C0;
+  --dot-opacity: 0;
+  --note-body-text: #C0C0F0;
+  --border-light: #6060A0;
+  --border-dark: #000010;
+  --border-deep: #000008;
+  --text-glow: 0 0 6px rgba(200, 200, 255, 0.35);
+  --scanlines: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect x='1' y='0' width='1' height='1' fill='rgba(200%2C200%2C255%2C0.04)'/%3E%3Crect x='0' y='1' width='1' height='1' fill='rgba(200%2C200%2C255%2C0.04)'/%3E%3C/svg%3E");
+}
+
+/* Dark Mode Components */
+.dark-mode pre {
+  background: #000012;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: inset 1px 1px 2px var(--border-deep);
+}
+
+.dark-mode code {
+  background: rgba(128, 128, 255, 0.15);
+  color: var(--highlight);
+  text-shadow: var(--text-glow);
+}
+
+.dark-mode header nav a,
+.dark-mode .notes-list li a,
+.dark-mode .social-links,
+.dark-mode .panel a:not(.buttons-grid a) {
+  color: var(--text-main);
+  text-shadow: var(--text-glow);
+}
+
+.dark-mode header nav a:hover,
+.dark-mode .notes-list li a:hover,
+.dark-mode .social-links:hover,
+.dark-mode .panel a:not(.buttons-grid a):hover {
+  color: var(--highlight);
+}
+
+.dark-mode .buttons-grid a {
+  background: var(--panel-bg);
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+}
+
+.dark-mode .buttons-grid a:hover {
+  transform: none;
+  border-color: var(--highlight) var(--border-dark) var(--border-dark) var(--highlight);
+}
+
+.dark-mode .buttons-grid a:active {
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+}
+
+.dark-mode .status-footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 2px solid var(--border-light);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+
+/* ==========================================================================
+   Global & Layout Restyling
+   ========================================================================== */
+
+body, h1, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "VT323", monospace;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "VT323", monospace;
+  font-size: 20px;
+  line-height: 1.75;
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  text-shadow: var(--text-glow);
+
+  /* PS1 4-bit dithering pattern */
+  background-image: var(--scanlines);
+  background-size: 2px 2px;
+  background-position: 0 0;
+  transition: background-color 0.15s steps(3), color 0.15s steps(3);
+}
+
+img {
+  image-rendering: pixelated;
+}
+
+/* Structural Windows 98 / PS1 Hardware UI Shells */
+.panel {
+  background-color: var(--panel-bg);
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: 1px 1px 0px 0px var(--border-deep);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.75rem;
+}
+
+/* Theme Toggle Component */
+#theme-toggle {
+  background: var(--panel-bg);
+  color: var(--text-main);
+  font-family: "VT323", monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: 1px 1px 0px var(--border-deep);
+  border-radius: 0px; /* Purge modern curves */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-shadow: var(--text-glow);
+}
+
+#theme-toggle:hover {
+  background: var(--panel-bg);
+  color: var(--highlight);
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+}
+
+#theme-toggle:active {
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  box-shadow: none;
+  padding: 6px 11px 4px 13px; /* Simulates physically deep push state */
+}
+
+/* Header Area */
+header {
+  padding: 1.5rem 0;
+}
+
+.header-container {
+  max-width: 72ch;
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.site-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-accent);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+header nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+  padding-left: 0rem;
+}
+
+.nav-gif img {
+  width: 44px;
+  height: 44px;
+  image-rendering: pixelated;
+  display: inline-block;
+  vertical-align: middle;
+  border: 2px solid var(--border-dark);
+}
+
+header nav a {
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 2px 6px;
+  border: 1px dashed transparent;
+}
+
+header nav a:hover, header nav a.active {
+  color: var(--highlight);
+  text-decoration: none;
+  border-color: var(--highlight);
+  background: rgba(0,0,0,0.05);
+}
+
+/* Main Stream Window */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 72ch;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+article h2 {
+  font-size: 2.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px dashed var(--text-accent);
+  padding-bottom: 0.5rem;
+}
+
+
+/* ==========================================================================
+   Button Wall Component
+   ========================================================================== */
+
+.button-wall {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 0 8px 0;
+  border-bottom: 1px solid var(--border-dark);
+  margin-bottom: 8px;
+}
+
+.buttons-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.buttons-grid a {
+  display: inline-block;
+  background: var(--panel-bg);
+  padding: 2px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: 1px 1px 0px var(--border-deep);
+  transition: none;
+}
+
+.buttons-grid img {
+  width: 90px;
+  height: 31px;
+  display: block;
+  image-rendering: pixelated;
+}
+
+.buttons-grid a:hover {
+  transform: none;
+  border-color: var(--highlight) var(--border-dark) var(--border-dark) var(--highlight);
+}
+
+.buttons-grid a:active {
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  box-shadow: none;
+}
+
+
+/* ==========================================================================
+   Footer Status Architecture
+   ========================================================================== */
+
+.status-footer {
+  width: 100%;
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 2px solid var(--border-dark);
+  padding: 10px 24px 12px 24px;
+  box-sizing: border-box;
+  box-shadow: inset 0 2px 0 var(--border-light);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-copy, .footer-timezone, .footer-status {
+  font-size: 0.9rem;
+  color: var(--footer-text);
+  font-family: "VT323", monospace;
+  text-transform: uppercase;
+}
+
+.footer-copy a {
+  color: var(--footer-text);
+  text-decoration: underline;
+}
+
+.footer-copy a:hover {
+  color: var(--highlight);
+}
+
+
+/* ==========================================================================
+   Content Elements & Typography
+   ========================================================================== */
+
+pre {
+  background: rgba(0, 0, 0, 0.08);
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  border-radius: 0px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+pre code {
+  color: var(--text-main);
+  font-family: "VT323", monospace;
+}
+
+code {
+  background: rgba(0,0,0,0.08);
+  color: var(--text-main);
+  padding: 0.1em 0.3em;
+  border-radius: 0px;
+  font-size: 0.9em;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.note-body p {
+  margin-bottom: 1.75rem;
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--note-body-text);
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
+.note-body ul,
+.resources-list {
+  list-style: none;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.note-body ol {
+  list-style: decimal;
+  padding-left: 1.75rem;
+  margin: 1rem 0;
+}
+
+.note-body ol li {
+  margin-bottom: 0.85rem;
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--note-body-text);
+  padding-left: 0.25rem;
+}
+
+.note-body ol li::marker {
+  font-family: "VT323", monospace;
+  font-weight: 700;
+  color: var(--text-accent);
+}
+
+.note-body ul li,
+.resources-list li {
+  position: relative;
+  margin-bottom: 0.85rem;
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--note-body-text);
+}
+
+.note-body ul li::before,
+.resources-list li::before {
+  content: "»";
+  position: absolute;
+  left: -1.2rem;
+  color: var(--text-accent);
+  font-family: "VT323", monospace;
+  font-weight: bold;
+}
+
+.note-body h3 {
+  font-family: "VT323", monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-accent);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px dashed var(--border-dark);
+  padding-bottom: 0.3rem;
+}
+
+.note-body h4 {
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-accent);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.note-body a {
+  color: var(--text-accent);
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: none;
+}
+
+.note-body a:hover {
+  color: var(--highlight);
+  background: rgba(0,0,0,0.04);
+}
+
+.note-body blockquote {
+  font-family: "Lora", Georgia, serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--note-body-text);
+  border-left: 3px solid var(--text-accent);
+  background: rgba(0, 0, 0, 0.02);
+  margin: 2rem 0;
+  padding: 0.75rem 0 0.75rem 1.5rem;
+}
+
+.note-body blockquote p {
+  margin-bottom: 0;
+}
+
+.note-body hr {
+  border: none;
+  border-top: 2px dashed var(--border-dark);
+  margin: 2.5rem auto;
+  width: 60%;
+  opacity: 0.7;
+}
+
+.note-body strong {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.note-body em {
+  font-style: italic;
+  color: inherit;
+}
+
+.social-links:hover,
+.panel a:not(.buttons-grid a):hover {
+  color: var(--highlight);
+  text-decoration: underline;
+}
+
+.social-link {
+  font-family: "VT323", monospace;
+  font-weight: 700;
+  color: var(--text-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.social-link.github { text-decoration-color: var(--border-dark); }
+.social-link.email  { text-decoration-color: var(--border-dark); }
+.social-link.itch   { text-decoration-color: var(--border-dark); }
+.social-link.umami  { text-decoration-color: var(--border-dark); }
+
+
+/* ==========================================================================
+   Navigation Lists & Feeds
+   ========================================================================== */
+
+.notes-list {
+  list-style: none;
+  margin: 1rem auto 0 auto;
+  max-width: 72ch;
+  padding: 0;
+}
+
+.notes-list li {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+}
+
+.notes-list li a {
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: inline-block;
+}
+
+.notes-list li a:hover {
+  color: var(--highlight);
+  text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   Accessibility & States
+   ========================================================================== */
+
+::selection {
+  background: var(--text-main);
+  color: var(--bg-color);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px dotted var(--text-main);
+  outline-offset: 2px;
+}
+
+.note-body figcaption {
+  font-family: "VT323", monospace;
+  font-size: 0.8rem;
+  color: var(--text-accent);
+  text-align: center;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+}
+
+.note-body > p:first-of-type::first-letter {
+  font-family: "Lora", Georgia, serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  float: left;
+  margin-right: 0.12em;
+  margin-top: 0.05em;
+  color: var(--text-accent);
+}
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: var(--text-accent);
+  z-index: 9999;
+}
+
+#timer {
+  font-family: "VT323", monospace;
+  font-size: 1.4rem;
+  color: var(--text-main);
+  background: rgba(0,0,0,0.05);
+  padding: 4px 12px;
+  border: 1px solid var(--border-dark);
+  letter-spacing: 1px;
+}
+
+.clock-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.clock-cat {
+  width: 100%;
+  max-width: 320px;
+  border: 2px solid var(--border-dark);
+  border-radius: 0px;
+  display: block;
+}
+
+
+/* ==========================================================================
+   Responsive Logic
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .site-title {
+    font-size: 2rem;
+  }
+
+  header nav {
+    gap: 0.5rem;
+  }
+
+  header nav a {
+    font-size: 0.9rem;
+  }
+
+  .panel {
+    padding: 1rem;
+  }
+
+  article h2 {
+    font-size: 1.8rem;
+  }
+
+  .status-footer {
+    padding: 1rem;
+  }
+
+  main {
+    margin-bottom: 2rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+
+/* ==========================================================================
+   Print Archetypes
+   ========================================================================== */
+
+@media print {
+  body {
+    background: white !important;
+    background-image: none !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+
+  header nav,
+  #theme-toggle,
+  .status-footer,
+  .button-wall,
+  #reading-progress,
+  .nav-gif {
+    display: none !important;
+  }
+
+  .panel {
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  .note-body p,
+  .note-body li {
+    color: black !important;
+    font-family: Georgia, serif;
+  }
+
+  article h2 {
+    color: black !important;
+    border-bottom: 1px solid #000;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #333;
+  }
+
+  main {
+    max-width: 100% !important;
+    margin-bottom: 0 !important;
+  }
+}
