@@ -4,7 +4,7 @@ build:
 	python3 src/main.py
 
 serve:
-	npx serve docs -l 8888
+	python3 -m http.server --directory docs 8888
 
 dev:
 	@echo "Starting dev server on http://localhost:8888"
