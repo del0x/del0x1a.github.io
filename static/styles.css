@@ -29,21 +29,6 @@
   --border-dark: #2F4F4F;
 }
 
-/* Panels (light mode enhancement) */
-.light-mode .panel {
-  background-color: var(--panel-bg);
-  border: 2px solid var(--border-dark);
-  padding: 1.5rem 2rem;
-  margin-bottom: 1.75rem;
-  box-shadow: 5px 5px 0 var(--border-light); /* mimic dark-mode neon pop but subtle */
-  transition: transform 0.1s ease, box-shadow 0.2s ease;
-}
-
-.light-mode .panel:hover {
-  transform: translateY(-2px);
-  box-shadow: 4px 4px 0 var(--border-light);
-}
-
 /* Body background: subtle parchment gradient */
 body.light-mode {
   background-color: var(--bg-color);
@@ -57,55 +42,63 @@ body.light-mode {
 
 
 
-/* Dark Mode: Terminal / Cyberpunk Palette */
+/* ==========================================================================
+   Dark Mode: Matte Black & Crimson Palette
+   ========================================================================== */
+
 @media (prefers-color-scheme: dark) {
-  :root:not(.light-mode){
-    --bg-color: #0D0D0D;          /* Terminal black */
-    --text-main: #C0FFEE;         /* Neon greenish-white */
-    --text-accent: #FF6AFF;       /* Magenta */
-    --highlight: #00FFFF;         /* Cyan buttons/highlights */
-    --footer-bg: #0D0D0D;
-    --footer-text: #C0FFEE;
-    --dot-opacity: 0.08;          /* slightly visible neon dots */
-    --note-body-text: #A8D8C8;   /* softer for long reads */
-    --panel-bg: #111111;          /* dark panels */
-    --border-light: #33FF33;      /* neon green top-left shadow */
-    --border-dark: #003300;       /* dark shadow bottom-right */
+  :root:not(.light-mode) {
+    --bg-color: #121212;          /* True matte black base (reduces eye strain) */
+    --panel-bg: #1E1E1E;          /* Elevated matte surface for depth */
+    --text-main: #EAEAEA;         /* Soft off-white to prevent screen glare */
+    --text-accent: #A1A1AA;       /* Muted gray for subtext and navigation */
+    --highlight: #FF453A;         /* Crimson */ 
+    /* NOTE: If you prefer blue, swap --highlight to: #0A84FF */
+    
+    --footer-bg: #0A0A0A;         /* Deep recessed background for footer */
+    --footer-text: #888888;
+    --dot-opacity: 0.05;          /* Very subtle background grid texture */
+    --note-body-text: #D4D4D8;    /* Softer gray optimized for long paragraphs */
+    --border-light: #000000;      /* Pitch black for grounded, solid drop-shadows */
+    --border-dark: #333333;       /* Subtle border outlining the panels */
   }
 }
 
-/* Forced Dark Mode (Cyberpunk) */
+/* Forced Dark Mode (Manual override) */
 .dark-mode {
-  --bg-color: #0D0D0D;
-  --text-main: #C0FFEE;
-  --text-accent: #FF6AFF;
-  --highlight: #00FFFF;
-  --footer-bg: #0D0D0D;
-  --footer-text: #C0FFEE;
-  --dot-opacity: 0.08;
-  --note-body-text: #A8D8C8;
-  --panel-bg: #111111;
-  --border-light: #33FF33;
-  --border-dark: #003300;
+  --bg-color: #121212;
+  --panel-bg: #1E1E1E;
+  --text-main: #EAEAEA;
+  --text-accent: #A1A1AA;
+  --highlight: #FF453A;           /* Bronze */
+  --footer-bg: #0A0A0A;
+  --footer-text: #888888;
+  --dot-opacity: 0.05;
+  --note-body-text: #D4D4D8;
+  --border-light: #000000;
+  --border-dark: #333333;
 }
 
-/* Code blocks in Cyberpunk dark mode */
+/* Code blocks in Matte Dark Mode */
 .dark-mode pre {
-  background: #111111;
-  border-color: #00FFFF;
+  background: #141414;
+  border-color: var(--border-dark);
+  border-left: 3px solid var(--highlight); /* Elegant side-accent for code blocks */
 }
 
 .dark-mode code {
-  background: rgba(0,255,255,0.08);
-  color: #C0FFEE;
+  background: rgba(255, 69, 58, 0.1);      /* Matches the crimson highlight */
+  /* If using blue, change background to: rgba(10, 132, 255, 0.1) */
+  color: #EAEAEA;
 }
 
-/* Links & Buttons in Cyberpunk dark mode */
+/* Links & Navigation in Matte Dark Mode */
 .dark-mode header nav a,
 .dark-mode .notes-list li a,
 .dark-mode .social-links,
 .dark-mode .panel a:not(.buttons-grid a) {
-  color: var(--text-accent);
+  color: var(--text-main);
+  transition: color 0.2s ease;
 }
 
 .dark-mode header nav a:hover,
@@ -115,9 +108,10 @@ body.light-mode {
   color: var(--highlight);
 }
 
+/* Button Wall in Matte Dark Mode */
 .dark-mode .buttons-grid a {
   background: var(--panel-bg);
-  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
 }
 
 .dark-mode .buttons-grid a:hover {
@@ -126,18 +120,16 @@ body.light-mode {
 }
 
 .dark-mode .buttons-grid a:active {
-  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
   transform: translateY(1px);
 }
 
-/* Footer neon vibe */
+/* Footer styling */
 .dark-mode .status-footer {
-  background-color: #0D0D0D;
-  color: #C0FFEE;
-  border-top: 2px solid #00FFFF;
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 2px solid var(--highlight);
 }
-
-
 
 /* ==========================================================================
    PSX Theme: Light
@@ -293,23 +285,29 @@ html {
 
 body {
   font-family: "Geist Mono", monospace;
-  font-size: 20px;
+  /* Replaced rigid 20px with fluid scaling */
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
   line-height: 1.75;
   color: var(--text-main);
   background-color: var(--bg-color);
-  display: flex; /* Added for footer positioning */
+  display: flex;
   flex-direction: column;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Dynamic dot grid */
   background-image:
     radial-gradient(rgba(255,255,255, var(--dot-opacity)) 1px, transparent 1px),
     radial-gradient(rgba(0,0,0, var(--dot-opacity)) 1px, transparent 1px);
   background-size: 5px 5px, 8px 8px;
   background-position: 0 0, 3px 3;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* New: Text balancing for all headers */
+h1, h2, h3, h4, .site-title {
+  text-wrap: balance;
+  line-height: 1.1;
 }
 
 /* Panels (articles, button wall, link-me sections) */
@@ -319,6 +317,20 @@ body {
   padding: 1.5rem 2rem;
   margin-bottom: 1.75rem;
   box-shadow: 5px 5px 0 var(--border-light);
+  /* Added spring physics */
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.25s ease;
+}
+
+.panel:hover {
+  transform: translate(-2px, -2px); /* Lift up and left */
+  box-shadow: 7px 7px 0 var(--border-light); /* Shadow grows */
+}
+
+.panel:active {
+  transform: translate(2px, 2px); /* Push down into the page */
+  box-shadow: 1px 1px 0 var(--border-light); /* Shadow compresses */
+  transition: transform 0.1s ease, box-shadow 0.1s ease; /* Snappier on click */
 }
 
 /* Header */
@@ -580,17 +592,21 @@ code {
   margin-bottom: 0.75rem;
 }
 
-/* Note body links */
+/* Note body links - Modern sweep highlight */
 .note-body a {
   color: var(--text-accent);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  transition: color 0.2s ease;
+  text-decoration: none;
+  font-weight: 600;
+  background-image: linear-gradient(120deg, var(--highlight) 0%, var(--highlight) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  background-position: 0 100%;
+  transition: background-size 0.2s ease-in-out, color 0.2s ease;
 }
 
 .note-body a:hover {
-  color: var(--highlight);
+  background-size: 100% 100%;
+  color: var(--bg-color); /* Inverts text color for readability */
 }
 
 /* Blockquotes */
