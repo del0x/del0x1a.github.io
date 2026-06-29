@@ -2,42 +2,96 @@ const toggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
 const themes = ['light', 'dark', 'auto', 'psx-light', 'psx-dark'];
 
-// Initialize: Get preference from storage or default to 'auto'
+// --- GIF Asset Setup ---
+const gifs = document.querySelectorAll(".nav-gif img");
+const basePath = window.location.pathname.includes("/notes/") ? "../images/" : "images/";
+const assets = {
+    catAnim: basePath + "cat-roll.gif",
+    catStill: basePath + "cat-roll-frame20.png",
+    hatAnim: basePath + "hat.gif",
+    hatStill: basePath + "hat.png"
+};
+let isGifPaused = sessionStorage.getItem("gifPaused") === "true";
+
+// Initialize Theme State
 let savedTheme = localStorage.getItem('theme') || 'auto';
 let currentIndex = themes.indexOf(savedTheme);
+// Fallback if localStorage had an invalid value
+if (currentIndex === -1) currentIndex = 2; 
 
-// Apply the theme
-function updateTheme(theme) {
-  // Remove all mode classes
-  body.classList.remove('light-mode', 'dark-mode', 'psx-light', 'psx-dark');
+// --- Core Update Functions ---
 
-  if (theme === 'auto') {
-    toggleBtn.textContent = '🔄'; // Auto/system
-    localStorage.removeItem('theme');
-  } else if (theme === 'light') {
-    body.classList.add('light-mode');
-    toggleBtn.textContent = '🌞'; // Light
-    localStorage.setItem('theme', theme);
-  } else if (theme === 'dark') {
-    body.classList.add('dark-mode');
-    toggleBtn.textContent = '🌙'; // Dark
-    localStorage.setItem('theme', theme);
-  } else if (theme === 'psx-light') {
-    body.classList.add('psx-light'); // Assuming PSX is a light theme
-    toggleBtn.textContent = '🎮'; // PSX
-    localStorage.setItem('theme', theme);
-  } else if (theme === 'psx-dark') {
-    body.classList.add('psx-dark'); // Assuming PSX is a dark theme
-    toggleBtn.textContent = '👾'; // PSX
-    localStorage.setItem('theme', theme);
-  }
+function updateGifDisplay(activeTheme) {
+    if (gifs.length === 0) return;
+
+    let isVisuallyDark = false;
+
+    // Determine if the screen is currently dark
+    if (activeTheme === 'dark' || activeTheme === 'psx-dark') {
+        isVisuallyDark = true;
+    } else if (activeTheme === 'auto') {
+        // If auto, ask the operating system
+        isVisuallyDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    // Pick the right image
+    const targetAnim = isVisuallyDark ? assets.hatAnim : assets.catAnim;
+    const targetStill = isVisuallyDark ? assets.hatStill : assets.catStill;
+
+    // Apply to all instances of the nav-gif
+    gifs.forEach(gif => {
+        gif.src = isGifPaused ? targetStill : targetAnim;
+    });
 }
 
-// Set initial state
+function updateTheme(theme) {
+    // 1. Remove all mode classes
+    body.classList.remove('light-mode', 'dark-mode', 'psx-light', 'psx-dark');
+
+    // 2. Apply classes and button text
+    if (theme === 'auto') {
+        toggleBtn.textContent = '🔄'; 
+        localStorage.removeItem('theme');
+    } else {
+        body.classList.add(theme + (theme.startsWith('psx') ? '' : '-mode'));
+        localStorage.setItem('theme', theme);
+        
+        // Update button emojis
+        if (theme === 'light') toggleBtn.textContent = '🌞';
+        else if (theme === 'dark') toggleBtn.textContent = '🌙';
+        else if (theme === 'psx-light') toggleBtn.textContent = '🎮';
+        else if (theme === 'psx-dark') toggleBtn.textContent = '👾';
+    }
+
+    // 3. Immediately update the GIF to match the new theme
+    updateGifDisplay(theme);
+}
+
+// --- Initialization & Event Listeners ---
+
+// Set initial state on load
 updateTheme(themes[currentIndex]);
 
 // Cycle through themes on click
 toggleBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % themes.length;
-  updateTheme(themes[currentIndex]);
+    currentIndex = (currentIndex + 1) % themes.length;
+    updateTheme(themes[currentIndex]);
 });
+
+// Handle GIF pause/play clicks
+gifs.forEach(gif => {
+    gif.addEventListener("click", () => {
+        isGifPaused = !isGifPaused;
+        sessionStorage.setItem("gifPaused", isGifPaused.toString());
+        updateGifDisplay(themes[currentIndex]);
+    });
+});
+
+// Listen for OS-level dark mode changes (only matters if user is in 'auto' mode)
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (themes[currentIndex] === 'auto') {
+            updateGifDisplay('auto');
+        }
+    });
+}

@@ -52,7 +52,7 @@ body.light-mode {
     --panel-bg: #1E1E1E;          /* Elevated matte surface for depth */
     --text-main: #EAEAEA;         /* Soft off-white to prevent screen glare */
     --text-accent: #A1A1AA;       /* Muted gray for subtext and navigation */
-    --highlight: #FF453A;         /* Crimson */ 
+    --highlight: #800080;         /* Crimson */ 
     /* NOTE: If you prefer blue, swap --highlight to: #0A84FF */
     
     --footer-bg: #0A0A0A;         /* Deep recessed background for footer */
@@ -70,7 +70,7 @@ body.light-mode {
   --panel-bg: #1E1E1E;
   --text-main: #EAEAEA;
   --text-accent: #A1A1AA;
-  --highlight: #FF453A;           /* Bronze */
+  --highlight: #800080;           /* Crimson */
   --footer-bg: #0A0A0A;
   --footer-text: #888888;
   --dot-opacity: 0.05;
